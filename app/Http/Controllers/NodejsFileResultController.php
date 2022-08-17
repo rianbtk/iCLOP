@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use Session;
 
-class FlutterFileResultController extends Controller
+class NodejsFileResultController extends Controller
 {
 
   public function create($id) {
@@ -18,7 +18,7 @@ class FlutterFileResultController extends Controller
     $topic = \App\Topic::find($id);
     $files = \App\TopicFiles::where('topic','=',$id)->get();
 
-    return view('student/fluttercourse/lfiles/create')
+    return view('student/nodejscourse/lfiles/create')
       ->with(compact('files'))
       ->with(compact('topic'));
   }
@@ -38,7 +38,7 @@ class FlutterFileResultController extends Controller
 
 	//jika data ada yang kosong
     if ($validator->fails()) {
-        return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
+        return Redirect::to('student/nodejscourse/lfiles/create/'.$request->get('topic'))
         ->withErrors($validator);
     } else {
         $file = $request->file('rscfile');
@@ -46,14 +46,14 @@ class FlutterFileResultController extends Controller
 
         $fileinfo = \App\TopicFiles::find($request->get('fileid'));
         if ($fileinfo['fileName']!=$filename) {
-          return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
+          return Redirect::to('student/nodejscourse/lfiles/create/'.$request->get('topic'))
           ->withErrors("File name should be ".$fileinfo['fileName']);
         } else {
           $result = \App\FileResult::where('userid','=',Auth::user()->id)
                 ->where('fileid','=',$request->get('fileid'))
                 ->get();
           if (count($result)>0) {
-            return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
+            return Redirect::to('student/nodejscourse/lfiles/create/'.$request->get('topic'))
             ->withErrors('File '.$fileinfo['fileName'].' was already submitted');
           } else {
             $rsc=$file->store('resource','public');
@@ -67,7 +67,7 @@ class FlutterFileResultController extends Controller
             Session::flash('message','A New File Result Stored');
 
             //return "Add new topic is success";
-            return Redirect::to('student/fluttercourse/results?topicList='.$fileinfo['topic'])->with( [ 'topic' => $request->get('topic') ] );
+            return Redirect::to('student/nodejscourse/results?topicList='.$fileinfo['topic'])->with( [ 'topic' => $request->get('topic') ] );
           }
         }
     }
@@ -86,7 +86,7 @@ class FlutterFileResultController extends Controller
 
     $entity->delete();
     Session::flash('File Result with Id='.$id.' is deleted');
-    return Redirect::to('student/fluttercourse/results?topicList='.$request->get('topic'));
+    return Redirect::to('student/nodejscourse/results?topicList='.$request->get('topic'));
   }
 
 
@@ -103,24 +103,24 @@ class FlutterFileResultController extends Controller
 
     $entity->delete();
     Session::flash('File Result with Id='.$id.' is deleted');
-    return Redirect::to('student/fluttercourse/results?topicList='.$topic.'&option=files');
+    return Redirect::to('student/nodejscourse/results?topicList='.$topic.'&option=files');
   }
 
 
   public function submit($id) {
     //
-    $entity=new \App\FlutterStudentSubmit;
+    $entity=new \App\NodejsStudentSubmit;
 
     $entity->userid=Auth::user()->id;
     $entity->topic=$id;
     $entity->validstat="valid";
     $entity->save();
 
-    $topic = \App\FlutterTopic::find($id);
+    $topic = \App\NodejsTopic::find($id);
     Session::flash('message','Topic '.$topic['name'].' Validation is Success');
 
     //return "Add new topic is success";
-    return Redirect::to('student/fluttercourse/results?topicList='.$id);
+    return Redirect::to('student/nodejscourse/results?topicList='.$id);
 
   }
 

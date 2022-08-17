@@ -127,23 +127,17 @@ Route::group(['middleware' => ['auth', 'student']], function() {
   Route::get('student/lfiles/fluttercourse/valid/{topic}', 'FlutterFileResultController@submit');
   Route::get('student/lfiles/fluttercourse/delete/{id}/{topic}', 'FlutterFileResultController@delete');
 
-  Route::patch('/student/nodejscourse/results/valsub',['as' => 'results.valsub', 'uses' => 'FlutterTaskResultController@valsub']);
-  Route::get('student/nodejscourse/results/create/{topic}', 'FlutterTaskResultController@create');
-  Route::get('/student/nodejscourse', 'StudentController@fluttercourse');
-  Route::get('/student/nodejscourse/topic', 'StudentController@fluttercoursetopic');
-  Route::resource('/student/nodejscourse/tasks', 'FlutterController');
-  Route::resource('/student/nodejscourse/results', 'FlutterResultController');
-  Route::resource('/student/nodejscourse/lfiles', 'FlutterFileResultController');
-  Route::get('student/lfiles/nodejscourse/create/{topic}', 'FlutterFileResultController@create');
-  Route::get('student/lfiles/nodejscourse/valid/{topic}', 'FlutterFileResultController@submit');
-  Route::get('student/lfiles/nodejscourse/delete/{id}/{topic}', 'FlutterFileResultController@delete');
+  Route::patch('/student/nodejscourse/results/valsub',['as' => 'results.valsub', 'uses' => 'NodejsTaskResultController@valsub']);
+  Route::get('student/nodejscourse/results/create/{topic}', 'NodejsTaskResultController@create');
+  Route::get('/student/nodejscourse', 'StudentController@Nodejscourse');
+  Route::get('/student/nodejscourse/topic', 'StudentController@Nodejscoursetopic');
+  Route::resource('/student/nodejscourse/tasks', 'NodejsController');
+  Route::resource('/student/nodejscourse/results', 'NodejsResultController');
+  Route::resource('/student/nodejscourse/lfiles', 'NodejsFileResultController');
+  Route::get('student/lfiles/nodejscourse/create/{topic}', 'NodejsFileResultController@create');
+  Route::get('student/lfiles/nodejscourse/valid/{topic}', 'NodejsFileResultController@submit');
+  Route::get('student/lfiles/nodejscourse/delete/{id}/{topic}', 'NodejsFileResultController@delete');
 
-
-  Route::get('/student/nodejscourse', 'StudentController@nodejscourse');
-  Route::get('/student/nodejscourse/topic', 'StudentController@nodejscoursetopic');
-  Route::get('/student/nodejscourse', 'StudentController@nodejscourse');
-  Route::resource('/student/nodejscourse/tasks', 'TaskStdController');
-  Route::resource('/student/nodejscourse/results', 'TaskResultController');
 
 
     /** Python */
@@ -177,9 +171,9 @@ Route::group(['middleware' => ['auth', 'student']], function() {
   Route::get('/student/unitycourse/page', 'StudentController@unitycoursepage');
 // 
 
-  Route::get('/student/nodejs', 'StudentController@nodejscourse');
-  Route::get('/student/nodejscourse/basic-html', 'StudentController@nodejscourseBasicHTML');
-  Route::get('/student/nodejscourse/dynamic-content', 'StudentController@nodejscourseDynamicContent');
+  // Route::get('/student/nodejs', 'StudentController@nodejscourse');
+  // Route::get('/student/nodejscourse/basic-html', 'StudentController@nodejscourseBasicHTML');
+  // Route::get('/student/nodejscourse/dynamic-content', 'StudentController@nodejscourseDynamicContent');
 
   Route::get('/student', 'StudentController@index');
   Route::resource('/student/tasks', 'TaskStdController');

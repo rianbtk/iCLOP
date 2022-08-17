@@ -56,7 +56,10 @@
                     Tools: Windows PowerShell 5.0+, Git 2.x
                   </li>
                   <li>
-                    Android Studio (Flutter Extension)
+                    Android Studio
+                  </li>
+                  <li>
+                    Jest (SuperTest)
                   </li>
                 </ol>
               </p2>

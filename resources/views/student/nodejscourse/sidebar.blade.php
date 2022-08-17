@@ -4,7 +4,7 @@
       <img src="{{asset('lte/dist/img/iclop-logo.png')}}" alt="iCLOP logo" class="brand-image elevation-3"
            style="width:120px;height:60px;">
            <br>
-      <span class="brand-text font-weight-light" style="font-size:160%;"> &nbsp;  NodeJs  Course</span>
+      <span class="brand-text font-weight-light" style="font-size:160%;"> &nbsp;  Nodejs  Course</span>
     </a>
 
     <!-- Sidebar -->
