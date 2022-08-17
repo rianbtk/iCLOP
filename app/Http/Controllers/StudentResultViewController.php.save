@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class StudentResultViewController extends Controller
+{
+    //
+	public function index()
+    {
+        //
+        $entities=\App\Topic::all();
+        $data=['entities'=>$entities];
+        return view('admin/topics/index')->with($data);
+    }
+}

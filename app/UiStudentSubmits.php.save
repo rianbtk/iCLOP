@@ -1,0 +1,248 @@
+request)
+    {
+        //
+        $entities = \App\UiTopic::all();
+
+        $data = ['entities' => $entities];
+
+        return view('student/uitasks/index')
+            ->with(compact('entities'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+        return view('admin/uitopic/create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        // SUBMIT TASK PADA student/uitasks/(id)
+        $rules = [
+            'MainActivity' => 'required'
+        ];
+
+        $msg = [
+            'MainActivity.required' => 'MainActivity.xml must not empty'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $msg);
+
+        //jika data ada yang kosong
+        if ($validator->fails()) {
+
+            //refresh halaman
+            return Redirect::to('student/uitasks/' . $request->get('id'))
+                ->withErrors($validator);
+        } else {
+            $codebox = array();
+            $codebox[0] = $request->get('MainActivity');
+            $codebox[1] = $request->get('Color');
+            $codebox[2] = $request->get('String');
+
+            // save data to uistudent_submits
+            $this->insertUiStudentSubmits($request->get('id'));
+            $this->insertUiCodeResults($codebox, $request);
+
+            //jika berhasil lempar pesan ini
+            Session::flash('message', 'Task were successfully submitted');
+
+            //dialihkan ke .../student/uitasks/(id)
+            return Redirect::to('student/uitasks/' . $request->get('id'));
+        }
+    }
+
+    public function insertUiStudentSubmits($topicid)
+    {
+        # code...
+        $entity = new \App\UiStudentSubmits;
+
+        $entity->userid = Auth::user()->id;
+        $entity->uitopic = $topicid;
+        $entity->checkresult = "-";
+        $entity->save();
+    }
+
+    public function insertUiCodeResults($codebox, $request)
+    {
+        $i = 1;
+
+        foreach ($codebox as $textareas) {
+            # code...
+            $entity = new \App\UiCodeResults;
+
+            // filter data for uisubmitid column (based userid & uitopic)
+            $uisubmitid_filter = \App\UiStudentSubmits::where('userid', '=', Auth::user()->id)
+                ->where('uitopic', '=', $request->get('id'))
+                ->orderBy('id', 'desc')
+                ->take(1)
+                ->get();
+
+            foreach ($uisubmitid_filter as $filter) {
+                # code...
+                $uisubmitid_id = $filter['id'];
+            }
+
+            // create file with random name (using uuid()) for codefile column
+            $filename = Str::uuid();
+            File::put(public_path('/storage/uiresource/' . $filename . '.txt'), $textareas);
+            $file_path = ('uiresource/' . $filename . '.txt');
+
+            $entity->userid = Auth::user()->id;
+            $entity->uisubmitid = $uisubmitid_id;
+            $entity->uicodeid = $i;
+            $entity->codefile = $file_path;
+            $entity->save();
+            $i++;
+        }
+    }
+
+    private function getDataShow($student, $id)
+    {
+        $entities = \App\StudentValidation::where('student_validations.userid', '=', $student)
+            ->select(
+                'tasks.taskno',
+                'tasks.desc',
+                'test_files.fileName',
+                'student_validations.status',
+                'student_validations.report',
+                'student_validations.created_at',
+                'student_validations.duration'
+            )
+            ->join(
+                'test_files',
+                function ($join) {
+                    $join->on('student_validations.testid', '=', 'test_files.id');
+                }
+            )
+            ->join(
+                'tasks',
+                function ($join) {
+                    $join->on('tasks.id', '=', 'test_files.taskid');
+                }
+            )
+            ->where('tasks.topic', '=', $id)
+            ->orderBy('tasks.taskno', 'asc')
+            ->orderBy('test_files.fileName', 'asc')
+            ->get();
+
+        return $entities;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $entity = \App\UiTopic::find($id);
+        $maxId = DB::table('uitopics')->max('id');
+        $idUser = Auth::user()->id;
+
+        $submitDataStatus = \App\StudentSubmit::where('student_submits.userid', '=', $idUser)
+            ->select(
+                'uitopics.id',
+                'uitopics.name',
+                'student_submits.checkstat',
+                'student_submits.checkresult'
+            )
+            ->join('uitopics', 'uitopics.id', '=', 'student_submits.topic')
+            ->where('uitopics.id', '=', $id)
+            ->get();
+
+        // $submitDataStatus = $this->getDataShow($idUser, $id);
+
+        // ambil data student submit
+        $studentSubmit = \App\StudentSubmit::where('userid', '=', $idUser)
+            ->where('topic', '=', $id)
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+
+        $x = ['data' => $entity, 'maxid' => $maxId, 'entities' => $submitDataStatus, 'stdSubmit' => $studentSubmit];
+
+        return view('student/uitasks/show')->with($x);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+        $entity = \App\UiTopic::find($id);
+        $x = ['uitopic' => $entity];
+        return view('admin/uitopic/edit')->with($x);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $rules = [
+            'name' => 'required',
+            'stage' => 'required'
+        ];
+
+        $msg = [
+            'name.required' => 'Topic name must not empty',
+            'stage.required' => 'Learning stage must not empty'
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $msg);
+
+        if ($validator->fails()) {
+            return Redirect::to('admin/uitopic/' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+            $entity = \App\UiTopic::find($id);
+
+            $entity->name = $request->get('name');
+            $entity->stage = $request->get('stage');
+            $entity->desc = $request->get('desc');
+            $entity->packname = $request->get('packname');
+            $entity->projectpath = $request->get('projectpath');
+            $entity->save();
+
+            Session::flash('message', 'Topic with Id=' . $id . ' is changed');
+            return Redirect::to('admin/uitopic');
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+        $entity = \App\UiTopic::find($id);
+        $entity->delete();
+        Session::flash('message', 'Topic with Id=' . $id . ' is deleted');
+        return Redirect::to('admin/uitopic');
+    }
+}
+
