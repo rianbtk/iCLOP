@@ -9,19 +9,19 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use Session;
 
-class TaskResultController extends Controller
+class UnityResultController extends Controller
 {
   public function index(Request $request) {
     //$check=\App\StudentTeacher::where('student','=',Auth::user()->id);
     //if ($check->count()==0) return view('student/home')->with(['count'=>$check->count()]);
 $check=\App\User::find(Auth::user()->id);
-if ($check->status!='active') return view('student/home')->with(['status'=>$check->status]);
+if ($check->status!='active') return view('student/unitycourse/home')->with(['status'=>$check->status]);
 
       $filter = $request->input('topicList','6');
       if ($filter=='0') {
-        $entities=\App\TaskResult::where('userid','=',Auth::user()->id);
+        $entities=\App\UnityTaskResult::where('userid','=',Auth::user()->id);
       } else {
-        $entities = \App\Task::where('tasks.topic','=',$filter)
+        $entities = \App\UnityTask::where('tasks.topic','=',$filter)
               ->select(
                   'task_results.id',
                   'task_results.taskid',
@@ -44,7 +44,7 @@ if ($check->status!='active') return view('student/home')->with(['status'=>$chec
               ->get();
       }
 
-      $lfiles = \App\TopicFiles::where('topic_files.topic','=',$filter)
+      $lfiles = \App\UnityTopicFiles::where('topic_files.topic','=',$filter)
             ->select(
                 'file_results.id',
                 'file_results.userid',
@@ -63,21 +63,22 @@ if ($check->status!='active') return view('student/home')->with(['status'=>$chec
             ->orderBy('topic_files.fileName', 'asc')
             ->get();
 
-    $items = \App\Topic::where('status','>=','0')
+    $items = \App\UnityTopic::
+    where('status','>=','0')
 	->where('androidclass','=','AndroidX')
-        ->orderBy('level','asc')
         ->orderBy('name','asc')
+        ->orderBy('level','asc')
         ->pluck('name', 'id');
 
-      $valid = \App\StudentSubmit::where('userid','=',Auth::user()->id)
+      $valid = \App\UnityStudentSubmit::where('userid','=',Auth::user()->id)
               ->where('topic','=',$filter)
               ->get()->count();
 
 	$option = $request->input('option','github');
 
-	$currtopic = \App\Topic::find($filter);
+	$currtopic = \App\UnityTopic::find($filter);
  
-      return view('student/results/index')
+      return view('student/unitycourse/results/index')
         ->with(compact('entities'))
         ->with(compact('lfiles'))
         ->with(compact('items'))
@@ -91,7 +92,7 @@ if ($check->status!='active') return view('student/home')->with(['status'=>$chec
 
 
   public function getTaskData($topic) {
-    $items = \App\Task::where('tasks.topic','=',$topic)
+    $items = \App\UnityTask::where('tasks.topic','=',$topic)
           ->select(
               'tasks.id',
               'tasks.taskno',
@@ -110,45 +111,43 @@ if ($check->status!='active') return view('student/home')->with(['status'=>$chec
   }
   public function create($id)
   {
-      $items = \App\Task::where('topic','=',$id)
+      $items = \App\UnityTask::where('topic','=',$id)
         ->orderBy('taskno', 'asc')
         ->get();
-      $topic = \App\Topic::find($id);
-      return view('student/results/create')
+      $topic = \App\UnityTopic::find($id);
+      return view('student/unitycourse/results/create')
         ->with(compact('topic'))
         ->with(compact('items'));
   }
 
 private function validateByFiles($userid, $topic) {
     //
-    $entity=new \App\StudentSubmit;
+    $entity=new \App\UnityStudentSubmit;
 
     $entity->userid=$userid;
     $entity->topic=$topic;
     $entity->validstat="valid";
     $entity->save();
 
-    $data = \App\Topic::find($topic);
+    $data = \App\UnityTopic::find($topic);
     Session::flash('message','Topic '.$data['name'].' Validation is Success');
 
     //return "Add new topic is success";
-    return Redirect::to('student/results?topicList='.$topic.'&option=files');
+    return Redirect::to('student/unitycourse/results?topicList='.$topic.'&option=files');
 }
 
 private function validateZipFile($userid, $topic, $file, $path) {
     //
-$filename = $file->getClientOriginalName();
-    
     //$file = $request->file('zipfile');
-    if ($filename!='' ) {
+    if ($path!='' ) {
 	//$array = explode('.', $path);
 	//$ext = strtolower(end($array));
       $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-//      if ($ext=="zip") {
+      if ($ext=="zip") {
         $zipFile=$file->store('results','public');
 
 	if ($zipFile!='') {
-	   $entity=new \App\StudentSubmit;
+	   $entity=new \App\UnityStudentSubmit;
 
     	   $entity->userid=$userid;
     	   $entity->topic=$topic;
@@ -157,21 +156,21 @@ $filename = $file->getClientOriginalName();
 
     	   $entity->save();
 
-    	   $data = \App\Topic::find($topic);
+    	   $data = \App\UnityTopic::find($topic);
     	   Session::flash('message','Topic '.$data['name'].' Validation by Uploading Zip Project is Success');
 	} else {
  	   Session::flash('message','Storing file '.$request->file('zipfile').' was FAILED');
 	}
-      //} else {
-//	Session::flash('message','File extension is not zip -> '.$path.' -- '.$ext);
-  //    }
+      } else {
+	Session::flash('message','File extension is not zip -> '.$path.' is wrong .'.$ext);
+      }
     } else {
 	Session::flash('message','Zip File is empty');
     } 
 
 
     //return "Add new topic is success";
-    return Redirect::to('student/results?topicList='.$topic.'&option=zipfile');
+    return Redirect::to('student/unitycourse/results?topicList='.$topic.'&option=zipfile');
 }
 
 
@@ -179,26 +178,7 @@ private function validateGithubLink($userid, $topic, $link, $projname) {
     //
     $trimmedlink = trim($link);
     if ($this->validateUrl($trimmedlink,$projname)) {
-      /*
-        $zipFile=$file->store('results','public');
-
-        if ($zipFile!='') {
-           $entity=new \App\StudentSubmit;
-
-           $entity->userid=$userid;
-           $entity->topic=$topic;
-           $entity->validstat="valid";
-           $entity->projectfile=$zipFile;
-
-           $entity->save();
-
-           $data = \App\Topic::find($topic);
-           Session::flash('message','Topic '.$data['name'].' Validation is Success');
-        } else {
-           Session::flash('message','Storing file '.$request->file('zipfile').' was FAILED');
-        }
-	*/
-	$entity=new \App\StudentSubmit;
+	$entity=new \App\UnityStudentSubmit;
 
         $entity->userid=$userid;
         $entity->topic=$topic;
@@ -207,7 +187,7 @@ private function validateGithubLink($userid, $topic, $link, $projname) {
 
         $entity->save();
 
-        $data = \App\Topic::find($topic);
+        $data = \App\UnityTopic::find($topic);
         Session::flash('message','Topic '.$data['name'].' Validation by submitting GitHub link is Success');
 
 	//Session::flash('message','URL valid '.$link);
@@ -218,7 +198,7 @@ private function validateGithubLink($userid, $topic, $link, $projname) {
 
 
     //return "Add new topic is success";
-    return Redirect::to('student/results?topicList='.$topic.'&option=github');
+    return Redirect::to('student/unitycourse/results?topicList='.$topic.'&option=github');
 }
 
 private function validateUrl($url,$projname) {
@@ -228,8 +208,8 @@ private function validateUrl($url,$projname) {
 
     if (filter_var($url, FILTER_VALIDATE_URL)) {
 	$result = parse_url($url);
-	if (($result['scheme']=='https') && ($this->endsWith($result['host'],'github.com')) 
-		&& (strpos($result['path'],$projname))) {
+	if ( ($result['scheme']=='https') && ($this->endsWith($result['host'],'github.com')) 	
+	&& (strpos($result['path'],$projname)) ) {
 	  return true;
 	} else {
 	  return false;
@@ -243,36 +223,6 @@ private function endsWith($haystack, $needle) {
     return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
 
-/*
-  public function store(Request $request)
-  {
-	if (strlen($request->get('option'))>3) {
-	  if (($request->get('action')=='validate') && (strlen($request->submitbutton)>5)) {
-		if ($request->get('option')=='files') {
-		  validateByFiles(Auth::user()->id, $request->get('topic'));
-		} else if ($request->get('option')=='zipfile') {
-                  validateZipFile(Auth::user()->id, $request->get('topic'), $request->file('zipfile'));
-                } else {
-		  return Redirect::to('student/results?topicList='.$request->get('topic').'&option='.$request->get('option').
-		  '&submit='.$request->submitbutton);
-		}
-	  } else { //clicking radio button
-		return Redirect::to('student/results?topicList='.$request->get('topic').'&option='.$request->get('option'));
-		//'&submit='.$request->submitbutton);
-
-	  }
-
-	} else {   //echo $request;
-		saveTaskResult($request);
-		
-	}
-
-//echo $request;
-//return Redirect::to('student/results?topicList='.$request->get('topic').'&action='.$request->get('action'))
-//	->withErrors("Haloowwww".$request->get('action'));
-  }
-
-*/
 
   private function saveTaskResult(Request $request)
   {
@@ -295,25 +245,25 @@ private function endsWith($haystack, $needle) {
       if ($validator->fails()) {
 
           //refresh halaman
-          return Redirect::to('student/results/create/'.$request->get('topic'))
+          return Redirect::to('student/unitycourse/results/create/'.$request->get('topic'))
           ->withErrors($validator);
 
       } else {
-        $check = \App\TaskResult::where('userid','=',Auth::user()->id)
+        $check = \App\UnityTaskResult::where('userid','=',Auth::user()->id)
                 ->where('taskid','=',$request->get('taskid'))
                 ->get();
 
         if (sizeof($check)>0) {
-          $task = \App\Task::find($request->get('taskid'));
+          $task = \App\UnityTask::find($request->get('taskid'));
           $message = 'Result of Task '.$task['desc'].' is already submitted!!';
           //Session::flash('message',);
-          return Redirect::to('student/results/create'.$request->get('topic'))->withErrors($message);
+          return Redirect::to('student/unitycourse/results/create'.$request->get('topic'))->withErrors($message);
 
         } else {
           $file = $request->file('image');
           $imgFile=$file->store('results','public');
 
-          $entity=new \App\TaskResult;
+          $entity=new \App\UnityTaskResult;
 	
 	$comment = ($request->get('comment')==null)?'-':$request->get('comment');
 
@@ -328,7 +278,7 @@ private function endsWith($haystack, $needle) {
           Session::flash('message','A New Task Result Stored');
 
           //return "Add new topic is success";
-          return Redirect::to('student/results?topicList='.$request->get('topic'))->with( [ 'topic' => $request->get('topic') ] );
+          return Redirect::to('student/unitycourse/results?topicList='.$request->get('topic'))->with( [ 'topic' => $request->get('topic') ] );
         }
       }
   }
@@ -341,16 +291,18 @@ private function endsWith($haystack, $needle) {
                 if ($request->get('option')=='files') {
                   return $this->validateByFiles(Auth::user()->id, $request->get('topic'));
                 } else if ($request->get('option')=='zipfile') {
-                  return $this->validateZipFile(Auth::user()->id, $request->get('topic'), $request->file('zipfile'), $request->get('zipfile'));
+		  $file = $request->file('zipfile');
+		  $filename = $file->getClientOriginalName();
+                  return $this->validateZipFile(Auth::user()->id, $request->get('topic'), $file, $filename);
 		} else if ($request->get('option')=='github') {
 		  return $this->validateGithubLink(Auth::user()->id, $request->get('topic'), $request->get('githublink'), 
 			$request->get('projname'));
                 } else {
-                  return Redirect::to('student/results?topicList='.$request->get('topic').'&option='.$request->get('option').
+                  return Redirect::to('student/unitycourse/results?topicList='.$request->get('topic').'&option='.$request->get('option').
                   '&submit='.$request->submitbutton);
                 }
           } else { //clicking radio button
-                return Redirect::to('student/results?topicList='.$request->get('topic').'&option='.$request->get('option'));
+                return Redirect::to('student/unitycourse/results?topicList='.$request->get('topic').'&option='.$request->get('option'));
                 //'&submit='.$request->submitbutton);
           }
 
@@ -363,28 +315,28 @@ private function endsWith($haystack, $needle) {
   public function destroy(Request $request, $id)
   {
       //
-      $entity = \App\TaskResult::find($id);
+      $entity = \App\UnityTaskResult::find($id);
       $entity->delete();
       Session::flash('message','Task Result with Id='.$id.' is deleted');
-      return Redirect::to('student/results?topicList='.$request->get('topic'));
+      return Redirect::to('student/unitycourse/results?topicList='.$request->get('topic'));
   }
 
   public function edit($id)
   {
     //
-    $entity = \App\TaskResult::where('id','=',$id)->first();
-    $task = \App\Task::where('id','=',$entity['taskid'])->first();
-    return view('student/results/edit')->with(compact('entity'))
+    $entity = \App\UnityTaskResult::where('id','=',$id)->first();
+    $task = \App\UnityTask::where('id','=',$entity['taskid'])->first();
+    return view('student/unitycourse/results/edit')->with(compact('entity'))
       ->with(compact('task'));
   }
 
   public function valsub(Request $request)
   {
-      $items = \App\Task::where('topic','=',$id)
+      $items = \App\UnityTask::where('topic','=',$id)
         ->orderBy('taskno', 'asc')
         ->get();
-      $topic = \App\Topic::find($id);
-      return view('student/results/create')
+      $topic = \App\UnityTopic::find($id);
+      return view('student/unitycourse/results/create')
         ->with(compact('topic'))
         ->with(compact('items'));
   }
@@ -404,13 +356,13 @@ private function endsWith($haystack, $needle) {
     $validator=Validator::make($request->all(),$rules,$msg);
 
     if ($validator->fails()) {
-        return Redirect::to('student/results/'.$id.'/edit')
+        return Redirect::to('student/unitycourse/results/'.$id.'/edit')
         ->withErrors($validator);
 
     }else{
       $file = $request->file('image');
 
-      $entity=\App\TaskResult::find($id);
+      $entity=\App\UnityTaskResult::find($id);
 
       $entity->taskid=$request->get('taskid');
       $entity->status=$request->get('status');
@@ -425,8 +377,8 @@ private function endsWith($haystack, $needle) {
 
       Session::flash('message','Task Result with Id='.$id.' is changed');
 
-      $task = \App\Task::find($request->get('taskid'));
-      return Redirect::to('student/results?topicList='.$task['topic']);
+      $task = \App\UnityTask::find($request->get('taskid'));
+      return Redirect::to('student/unitycourse/results?topicList='.$task['topic']);
     }
   }
 }

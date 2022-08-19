@@ -15,8 +15,8 @@ class FlutterFileResultController extends Controller
 
   public function create($id) {
     //
-    $topic = \App\Topic::find($id);
-    $files = \App\TopicFiles::where('topic','=',$id)->get();
+    $topic = \App\FlutterTopic::find($id);
+    $files = \App\FlutterTopicFiles::where('topic','=',$id)->get();
 
     return view('student/fluttercourse/lfiles/create')
       ->with(compact('files'))
@@ -44,7 +44,7 @@ class FlutterFileResultController extends Controller
         $file = $request->file('rscfile');
         $filename = $file->getClientOriginalName();
 
-        $fileinfo = \App\TopicFiles::find($request->get('fileid'));
+        $fileinfo = \App\FlutterTopicFiles::find($request->get('fileid'));
         if ($fileinfo['fileName']!=$filename) {
           return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
           ->withErrors("File name should be ".$fileinfo['fileName']);

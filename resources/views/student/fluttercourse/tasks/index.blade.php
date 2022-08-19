@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-12">
       <div class="card-header">
-          <h3 class="card-title">Start Learning Android Programming with APLAS</h3>
+          <h3 class="card-title">Start Learning Android Programming with iCLOP</h3>
       </div>
          <div class="card-body">
             @if (Session::has('message'))

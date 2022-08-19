@@ -1,8 +1,10 @@
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="{{asset('lte/dist/img/logo-aplas.png')}}" alt="APLAS logo" class="brand-image elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">WebApps</span>
+      <img src="{{asset('lte/dist/img/iclop-logo.png')}}" alt="iCLOP logo" class="brand-image elevation-3"
+           style="width:120px;height:60px;">
+           <br>
+      <span class="brand-text font-weight-light" style="font-size:160%;"> &nbsp;  Unity  Course</span>
     </a>
 
     <!-- Sidebar -->
@@ -20,20 +22,26 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href="{{URL::to('student/unitycourse/course')}}" class="nav-link">
-              <i class="nav-icon fas fa-fire"></i>
-              <p>
-                course
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{URL::to('student/unitycourse/page')}}" class="nav-link">
-              <i class="nav-icon fas fa-fire"></i>
-              <p>
-                page jE em bte
-              </p>
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+
+	<li class="treeview"> 
+	<a href="#" class="nav-link" style="background-color:powderblue;color:black;"> 
+	<i class="nav-icon fas fa-space-shuttle"></i>
+	<p><b>Start Learning</b></p>  
+	</a> 
+	<ul role="menu" class="nav nav-pills nav-sidebar flex-column"> 
+		<li class="nav-item">
+			<a href="{{URL::to('student/unitycourse/tasks')}}" class="nav-link"><i class="nav-icon fas fa-angle-right"></i>
+			<p>Download Materials</p>
+			</a > 
+		</li> 
+
+		<li class="nav-item">
+            <a href="{{URL::to('student/unitycourse/results')}}" class="nav-link">
+              <i class="nav-icon fas fa-angle-right"></i>
+              <p>Submit Your Project </p>
             </a>
           </li>
         </ul>

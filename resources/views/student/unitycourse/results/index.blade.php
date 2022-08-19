@@ -1,4 +1,4 @@
-@extends('student/fluttercourse/home')
+@extends('student/unitycourse/home')
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -27,7 +27,7 @@
                   {!! Form::label('tit1', 'Result of Each Task:') !!}
 
                   @if ($valid=='0')
-                   <a class="btn btn-success" href="{{ URL::to('/student/fluttercourse/results/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Task Result</a>
+                   <a class="btn btn-success" href="{{ URL::to('/student/unitycourse/results/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Task Result</a>
                    @endif
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -59,12 +59,12 @@
                                 <td class="text-center"><img src="{{ asset('storage/'.$entity['imgFile']) }}" width="120"/></td>
                                 <td>{{ $entity['comment'] }}</td>
                                 <td class="text-center">
-                                    <form method="POST" action="{{ URL::to('/student/fluttercourse/results/'.$entity['id']) }}">
+                                    <form method="POST" action="{{ URL::to('/student/unitycourse/results/'.$entity['id']) }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="hidden" name="topic" value="{{ $filter }}" />
                                         <div class="btn-group">
-                                            <a class="btn btn-success" href="{{ URL::to('/student/fluttercourse/results/'.$entity['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
+                                            <a class="btn btn-success" href="{{ URL::to('/student/unitycourse/results/'.$entity['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </form>
@@ -123,7 +123,7 @@
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="hidden" name="topic" value="{{ $filter }}" />
                                         <div class="btn-group">
-                                            <!--<a class="btn btn-info" href="{{ URL::to('/student/fluttercourse/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
+                                            <!--<a class="btn btn-info" href="{{ URL::to('/student/unitycourse/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
                                             -->
                                             <!-- <a class="btn btn-success" href="{{ URL::to('/student/lfiles/'.$lfile['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a> -->
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>

@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>iCLOP - Unity</title>
+  <title>iCLOP - Administrator Site</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
@@ -82,3 +82,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('lte/dist/js/adminlte.min.js')}}"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+<!--  -->
+<!--  -->
+

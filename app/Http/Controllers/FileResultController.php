@@ -18,7 +18,7 @@ class FileResultController extends Controller
     $topic = \App\Topic::find($id);
     $files = \App\TopicFiles::where('topic','=',$id)->get();
 
-    return view('student/fluttercourse/lfiles/create')
+    return view('student/lfiles/create')
       ->with(compact('files'))
       ->with(compact('topic'));
   }
@@ -38,7 +38,7 @@ class FileResultController extends Controller
 
 	//jika data ada yang kosong
     if ($validator->fails()) {
-        return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
+        return Redirect::to('student/lfiles/create/'.$request->get('topic'))
         ->withErrors($validator);
     } else {
         $file = $request->file('rscfile');
@@ -46,14 +46,14 @@ class FileResultController extends Controller
 
         $fileinfo = \App\TopicFiles::find($request->get('fileid'));
         if ($fileinfo['fileName']!=$filename) {
-          return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
+          return Redirect::to('student/lfiles/create/'.$request->get('topic'))
           ->withErrors("File name should be ".$fileinfo['fileName']);
         } else {
           $result = \App\FileResult::where('userid','=',Auth::user()->id)
                 ->where('fileid','=',$request->get('fileid'))
                 ->get();
           if (count($result)>0) {
-            return Redirect::to('student/fluttercourse/lfiles/create/'.$request->get('topic'))
+            return Redirect::to('student/lfiles/create/'.$request->get('topic'))
             ->withErrors('File '.$fileinfo['fileName'].' was already submitted');
           } else {
             $rsc=$file->store('resource','public');
@@ -67,7 +67,7 @@ class FileResultController extends Controller
             Session::flash('message','A New File Result Stored');
 
             //return "Add new topic is success";
-            return Redirect::to('student/fluttercourse/?topicList='.$fileinfo['topic'])->with( [ 'topic' => $request->get('topic') ] );
+            return Redirect::to('student/?topicList='.$fileinfo['topic'])->with( [ 'topic' => $request->get('topic') ] );
           }
         }
     }
@@ -86,7 +86,7 @@ class FileResultController extends Controller
 
     $entity->delete();
     Session::flash('File Result with Id='.$id.' is deleted');
-    return Redirect::to('student/fluttercourse/?topicList='.$request->get('topic'));
+    return Redirect::to('student/?topicList='.$request->get('topic'));
   }
 
 
@@ -103,7 +103,7 @@ class FileResultController extends Controller
 
     $entity->delete();
     Session::flash('File Result with Id='.$id.' is deleted');
-    return Redirect::to('student/fluttercourse/?topicList='.$topic.'&option=files');
+    return Redirect::to('student/?topicList='.$topic.'&option=files');
   }
 
 
@@ -120,7 +120,7 @@ class FileResultController extends Controller
     Session::flash('message','Topic '.$topic['name'].' Validation is Success');
 
     //return "Add new topic is success";
-    return Redirect::to('student/fluttercourse/?topicList='.$id);
+    return Redirect::to('student/?topicList='.$id);
 
   }
 

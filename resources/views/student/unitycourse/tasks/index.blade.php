@@ -1,4 +1,4 @@
-@extends('student/fluttercourse/home')
+@extends('student/unitycourse/home')
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -106,7 +106,7 @@
                                 <td>{{ $entity['name'] }}</td>
                                 <td class="text-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-info" href="{{ URL::to('/student/tasks/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
+                                            <a class="btn btn-info" href="{{ URL::to('/student/unitycourse/tasks/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
                                         </div>
                                 </td>
                             </tr>

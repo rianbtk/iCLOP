@@ -134,6 +134,16 @@
             </div>
           </div>
 
+          <!-- // postgree // -->
+
+            <div onclick="window.open('{{URL::to('/student/mysqlcourse/')}}','mysqlcourse-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class='bx bxl-medium-old'></i></div>
+              <h4 class="title"><a href="">MysqlCourse</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+            </div>
+          </div>
+
       </div>
     </section><!-- End Featured Services Section -->
 

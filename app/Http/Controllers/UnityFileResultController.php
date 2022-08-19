@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use Session;
 
-class NodejsFileResultController extends Controller
+class UnityFileResultController extends Controller
 {
 
   public function create($id) {
     //
-    $topic = \App\NodejsTopic::find($id);
-    $files = \App\NodejsTopicFiles::where('topic','=',$id)->get();
+    $topic = \App\UnityTopic::find($id);
+    $files = \App\UnityTopicFiles::where('topic','=',$id)->get();
 
-    return view('student/nodejscourse/lfiles/create')
+    return view('student/unitycourse/lfiles/create')
       ->with(compact('files'))
       ->with(compact('topic'));
   }
@@ -38,22 +38,22 @@ class NodejsFileResultController extends Controller
 
 	//jika data ada yang kosong
     if ($validator->fails()) {
-        return Redirect::to('student/nodejscourse/lfiles/create/'.$request->get('topic'))
+        return Redirect::to('student/unitycourse/lfiles/create/'.$request->get('topic'))
         ->withErrors($validator);
     } else {
         $file = $request->file('rscfile');
         $filename = $file->getClientOriginalName();
 
-        $fileinfo = \App\NodejsTopicFiles::find($request->get('fileid'));
+        $fileinfo = \App\UnityTopicFiles::find($request->get('fileid'));
         if ($fileinfo['fileName']!=$filename) {
-          return Redirect::to('student/nodejscourse/lfiles/create/'.$request->get('topic'))
+          return Redirect::to('student/unitycourse/lfiles/create/'.$request->get('topic'))
           ->withErrors("File name should be ".$fileinfo['fileName']);
         } else {
           $result = \App\FileResult::where('userid','=',Auth::user()->id)
                 ->where('fileid','=',$request->get('fileid'))
                 ->get();
           if (count($result)>0) {
-            return Redirect::to('student/nodejscourse/lfiles/create/'.$request->get('topic'))
+            return Redirect::to('student/unitycourse/lfiles/create/'.$request->get('topic'))
             ->withErrors('File '.$fileinfo['fileName'].' was already submitted');
           } else {
             $rsc=$file->store('resource','public');
@@ -67,7 +67,7 @@ class NodejsFileResultController extends Controller
             Session::flash('message','A New File Result Stored');
 
             //return "Add new topic is success";
-            return Redirect::to('student/nodejscourse/results?topicList='.$fileinfo['topic'])->with( [ 'topic' => $request->get('topic') ] );
+            return Redirect::to('student/unitycourse/results?topicList='.$fileinfo['topic'])->with( [ 'topic' => $request->get('topic') ] );
           }
         }
     }
@@ -86,7 +86,7 @@ class NodejsFileResultController extends Controller
 
     $entity->delete();
     Session::flash('File Result with Id='.$id.' is deleted');
-    return Redirect::to('student/nodejscourse/results?topicList='.$request->get('topic'));
+    return Redirect::to('student/unitycourse/results?topicList='.$request->get('topic'));
   }
 
 
@@ -103,24 +103,24 @@ class NodejsFileResultController extends Controller
 
     $entity->delete();
     Session::flash('File Result with Id='.$id.' is deleted');
-    return Redirect::to('student/nodejscourse/results?topicList='.$topic.'&option=files');
+    return Redirect::to('student/unitycourse/results?topicList='.$topic.'&option=files');
   }
 
 
   public function submit($id) {
     //
-    $entity=new \App\NodejsStudentSubmit;
+    $entity=new \App\UnityStudentSubmit;
 
     $entity->userid=Auth::user()->id;
     $entity->topic=$id;
     $entity->validstat="valid";
     $entity->save();
 
-    $topic = \App\NodejsTopic::find($id);
+    $topic = \App\UnityTopic::find($id);
     Session::flash('message','Topic '.$topic['name'].' Validation is Success');
 
     //return "Add new topic is success";
-    return Redirect::to('student/nodejscourse/results?topicList='.$id);
+    return Redirect::to('student/unitycourse/results?topicList='.$id);
 
   }
 

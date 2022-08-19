@@ -1,4 +1,4 @@
-@extends('student/fluttercourse/home')
+@extends('student/unitycourse/home')
 @section('content')
     <div class="row">
         <div class="col-12">
