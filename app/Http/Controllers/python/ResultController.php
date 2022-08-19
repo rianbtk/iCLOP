@@ -52,7 +52,7 @@ class ResultController extends Controller
         }        
 
         // view
-        return view('student.python_result.result_student', compact('dt_hasil'));
+        return view('student.pythoncourse.python_result.result_student', compact('dt_hasil'));
     }
 
 

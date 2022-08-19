@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/pythoncourse/home')
 
 @section('content')
 
@@ -84,7 +84,7 @@
 
             <div class="card-footer">
 
-                <a href="{{ url('student/python/pengerjaan/'. $id_percobaan) }}" class="btn btn-outline-info">Back</a>
+                <a href="{{ url('student/pythoncourse/python/pengerjaan/'. $id_percobaan) }}" class="btn btn-outline-info">Back</a>
 
                 {{-- <input type="hidden" name="topic" value="{{$taskid}}" /> --}}
 

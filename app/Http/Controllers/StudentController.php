@@ -30,9 +30,6 @@ class StudentController extends Controller
   public function pythoncourse() {
     return view('student/pythoncourse/main');
   }
-  public function pythoncoursetopic() {
-    return view('student/pythoncourse/topic');
-  }
 
   public function asynctask() {
     return view('student/androidcourse/asynctask/index');
@@ -51,11 +48,6 @@ class StudentController extends Controller
   public function unitycoursepage() {
     return view('student/unitycourse/page/index');
   }
-  // 
-
-  // public function nodejscourse() {
-  //   return view('student/nodejscourse/main');
-  // }
     public function nodejscourseBasicHTML() {
     return view('student/nodejscourse/basicHTML/index');
   }

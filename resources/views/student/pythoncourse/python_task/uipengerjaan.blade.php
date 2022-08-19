@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/pythoncourse/home')
 
 <!-- untuk mengisi yield pada home.blade.php -->
 @section('script')
@@ -93,7 +93,7 @@
 
                     <!-- jika kembali ke list percobaan -->
                     <input type="button" value="List Percobaan"
-                        onclick="window.location.href='{{ url('student/python/taskdetail/'. $id_topik) }}'"
+                        onclick="window.location.href='{{ url('student/pythoncourse/python/taskdetail/'. $id_topik) }}'"
                         class="mx-1 btn btn-outline-primary" style="min-width: 120px; min-height: 45px;">
 
                     <!-- jika sudah sampai topic terakhir, next button dinonaktifkan -->
@@ -122,7 +122,7 @@
                     </a>
 
                     <!-- feedback button -->
-                    <a href="{{ url('/student/python/feedback/'. $infotopik->id_topik.'/'.$percobaan->id_percobaan)}}" class="float-right mr-1 btn btn-primary"
+                    <a href="{{ url('/student/pythoncourse/python/feedback/'. $infotopik->id_topik.'/'.$percobaan->id_percobaan)}}" class="float-right mr-1 btn btn-primary"
                         style="padding: 8px; min-width: 120px; min-height: 45px; color:white;"><i class="fa fa-heart" aria-hidden="true"></i>
                         Feedback
                     </a>
@@ -811,7 +811,7 @@
 
 
                     type: "GET",
-                    url: "{{ url('student/python/tampil-data-validation') }}",
+                    url: "{{ url('student/pythoncourse/python/tampil-data-validation') }}",
                     data: "id_topik=" + variabelid_topik + "&id_percobaan=" + variabelid_percobaan,
                     dataType: "json",
                     success: function (response) {

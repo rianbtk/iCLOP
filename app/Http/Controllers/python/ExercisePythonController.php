@@ -55,7 +55,7 @@ class ExercisePythonController extends Controller
             ) );
         }
 
-        return view('student.python_task.uitask', compact('python_topics'));
+        return view('student.pythoncourse.python_task.uitask', compact('python_topics'));
 
     }
 
@@ -71,7 +71,7 @@ class ExercisePythonController extends Controller
         $pengerjaan = DB::table('python_students_validation')->where('userid', $id)->get();
         
 
-        return view('student.python_task.uitask_detail', compact('percobaan', 'infotopik','pengerjaan'));
+        return view('student.pythoncourse.python_task.uitask_detail', compact('percobaan', 'infotopik','pengerjaan'));
         
     }
 
@@ -102,20 +102,20 @@ class ExercisePythonController extends Controller
         if ( $previous->count() > 0 ) {
 
             $previous = $previous->first();
-            $btn_previous = url('student/python/pengerjaan/'. $previous->id_percobaan);
+            $btn_previous = url('student/pythoncourse/python/pengerjaan/'. $previous->id_percobaan);
         }
         
         if ( $next->count() > 0 ) {
 
             $next = $next->first();
-            $btn_next = url('student/python/pengerjaan/'. $next->id_percobaan);
+            $btn_next = url('student/pythoncourse/python/pengerjaan/'. $next->id_percobaan);
         }
 
 
         $data['previous'] = $btn_previous;
         $data['next'] = $btn_next;
 
-        return view('student.python_task.uipengerjaan', $data);
+        return view('student.pythoncourse.python_task.uipengerjaan', $data);
     }
 
 
@@ -412,7 +412,7 @@ class ExercisePythonController extends Controller
         $data['percobaan']  = $percobaan;
         $data['id_percobaan'] = $id_percobaan;
 
-        return view('student.python_feedback.feedback', $data);
+        return view('student.pythoncourse.python_feedback.feedback', $data);
 
         // $data['id_topik'] = $id_topik;
         // $data['id_percobaan'] = $id_percobaan;
@@ -443,7 +443,7 @@ class ExercisePythonController extends Controller
         // eksekusi insert 
         DB::table('python_feedback')->insert( $data );
 
-        return redirect('student/python/pengerjaan/'. $id_percobaan);
+        return redirect('student/pythoncourse/python/pengerjaan/'. $id_percobaan);
     }
 
 

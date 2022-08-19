@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/pythoncourse/home')
 
 <!-- untuk mengisi yield pada home.blade.php -->
 @section('script')

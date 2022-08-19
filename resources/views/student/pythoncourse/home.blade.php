@@ -22,11 +22,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-	@include('student/fluttercourse/header')
+	@include('student/pythoncourse/header')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('student/fluttercourse/sidebar')
+  @include('student/pythoncourse/sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -67,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  @include('student/fluttercourse/footer')
+  @include('student/pythoncourse/footer')
 
 </div>
 <!-- ./wrapper -->

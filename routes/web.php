@@ -153,19 +153,19 @@ Route::group(['middleware' => ['auth', 'student']], function() {
     /** Python */
   //Tampilan topik
   Route::get('/student/pythoncourse', 'StudentController@pythoncourse');
-  Route::get('/student/python/task', [ExercisePythonController::class, 'index']);
+  Route::get('/student/pythoncourse/python/task', [ExercisePythonController::class, 'index']);
   //Tampilan detail percobaan
-  Route::get('/student/python/taskdetail/{id_topik}', [ExercisePythonController::class, 'detail_percobaan']);
+  Route::get('/student/pythoncourse/python/taskdetail/{id_topik}', [ExercisePythonController::class, 'detail_percobaan']);
   //Tampilan pengerjaan (Teks Editor)
-  Route::get('/student/python/pengerjaan/{id_percobaan}', [ExercisePythonController::class, 'teks_editor']);
+  Route::get('/student/pythoncourse/python/pengerjaan/{id_percobaan}', [ExercisePythonController::class, 'teks_editor']);
   // tampilan feedback
-  Route::get('/student/python/feedback/{id_topik}/{id_percobaan}', [ExercisePythonController::class, 'feedback']);
+  Route::get('/student/pythoncourse/python/feedback/{id_topik}/{id_percobaan}', [ExercisePythonController::class, 'feedback']);
   //Compile Program
   Route::get('/student/python-compile', [ExercisePythonController::class, 'compiler']);
   //tampilan data validation
-  Route::get('student/python/tampil-data-validation', [ExercisePythonController::class, 'dataValidation']);
+  Route::get('student/pythoncourse/python/tampil-data-validation', [ExercisePythonController::class, 'dataValidation']);
   //tampilan result mahasiswa
-  Route::get('student/python/result', [ResultController::class, 'index']);
+  Route::get('student/pythoncourse/python/result', [ResultController::class, 'index']);
   Route::get('pythonfeedback', [ExercisePythonController::class, 'feedback_submit']);
 
 

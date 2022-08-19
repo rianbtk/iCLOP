@@ -2,9 +2,9 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{asset('lte/dist/img/iclop-logo.png')}}" alt="iCLOP logo" class="brand-image elevation-3"
-           style="opacity: .8">
+           style="width:120px;height:60px;">
            <br>
-      <span class="brand-text font-weight-light" style="color: blueviolet"> &nbsp; &nbsp;   Flutter  Course</span>
+      <span class="brand-text font-weight-light" style="font-size:160%;"> &nbsp;  Python  Course</span>
     </a>
 
     <!-- Sidebar -->
@@ -26,24 +26,30 @@
                with font-awesome or any other icon font library -->
 
 
-	<li class="treeview"> 
-	<a href="#" class="nav-link" style="background-color:powderblue;color:black;"> 
-	<i class="nav-icon fas fa-space-shuttle"></i>
-	<p><b>Start Learning</b></p>  
-	</a> 
-	<ul role="menu" class="nav nav-pills nav-sidebar flex-column"> 
-		<li class="nav-item">
-			<a href="{{URL::to('student/fluttercourse/tasks')}}" class="nav-link"><i class="nav-icon fas fa-angle-right"></i>
-			<p>Download Materials</p>
-			</a > 
-		</li> 
+               <li class="treeview">
+                            <a href="#" class="nav-link" style="background-color:#dce775;color:black;">
+                                <i class="nav-icon fab fa-python"></i>
+                                <p>&nbsp;<b>Learning Basic Python</b>
+                                </p>
+                            </a>
+                            <ul role="menu" class="nav nav-pills nav-sidebar flex-column">
 
-		<li class="nav-item">
-            <a href="{{URL::to('student/fluttercourse/results')}}" class="nav-link">
-              <i class="nav-icon fas fa-angle-right"></i>
-              <p>Submit Your Project </p>
-            </a>
-          </li>
+                                <li class="nav-item">
+                                    <a href="{{URL::to('student/pythoncourse/python/task')}}" class="nav-link">
+                                        <i class="nav-icon fas fa-angle-right"></i>
+                                        <p>
+                                            Start Learning <span class="right badge badge-danger">New</span>
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{URL::to('student/pythoncourse/python/result')}}" class="nav-link"><i
+                                            class="nav-icon fas fa-angle-right"></i>
+                                        <p>Learning Results
+                                        </p>
+                                    </a>
+                                </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

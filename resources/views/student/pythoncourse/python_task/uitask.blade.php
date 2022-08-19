@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/pythoncourse/home')
 @section('content')
 <div class="row" style="padding: 32px">
     
@@ -45,7 +45,7 @@
                                     $icon = "fa fa-check";
                                 }
                             @endphp
-                            <a class="btn btn-{{ $color }}" href="{{ url('student/python/taskdetail/'. $tp['isi']->id_topik) }}"><i class="{{ $icon }}"></i></a>
+                            <a class="btn btn-{{ $color }}" href="{{ url('student/pythoncourse/python/taskdetail/'. $tp['isi']->id_topik) }}"><i class="{{ $icon }}"></i></a>
                         </td>
                     </tr>
                     @endif

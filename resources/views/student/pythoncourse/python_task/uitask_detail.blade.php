@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/pythoncourse/home')
 @section('content')
 <div class="row" style="padding: 32px">
 
@@ -9,7 +9,7 @@
 
     <!-- Button -->
     <div class="button-group">
-        <input type="button" value="Kembali" onclick="window.location.href='{{ url('student/python/task/') }}'"
+        <input type="button" value="Kembali" onclick="window.location.href='{{ url('student/pythoncourse/python/task/') }}'"
             class="mx-1 btn btn-outline-primary" style="min-width: 120px; min-height: 45px; margin-bottom: 20px">
     </div>
 
@@ -68,7 +68,7 @@
                         <td>{{ $pc->deskripsi }}</td>
                         <td class="text-center">
                             <a class="{{ $colorBtn }}"
-                                href="{{ url('student/python/pengerjaan/'. $pc->id_percobaan) }}"><?php echo $iconBtn ?></a>
+                                href="{{ url('student/pythoncourse/python/pengerjaan/'. $pc->id_percobaan) }}"><?php echo $iconBtn ?></a>
                         </td>
                     </tr>
                     @endforeach
