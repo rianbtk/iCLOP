@@ -126,6 +126,9 @@ Route::group(['middleware' => ['auth', 'student']], function() {
   Route::get('student/lfiles/fluttercourse/create/{topic}', 'FlutterFileResultController@create');
   Route::get('student/lfiles/fluttercourse/valid/{topic}', 'FlutterFileResultController@submit');
   Route::get('student/lfiles/fluttercourse/delete/{id}/{topic}', 'FlutterFileResultController@delete');
+  Route::resource('/student/flutterexercise', 'FlutterExerciseStdController');
+  Route::resource('/student/flutterexercisesubmission', 'FlutterExerciseSubmissionController');
+  Route::resource('/student/flutterexercisevalid', 'FlutterExerciseStdValidController');
 //NodeJs//
   Route::patch('/student/nodejscourse/results/valsub',['as' => 'results.valsub', 'uses' => 'NodejsTaskResultController@valsub']);
   Route::get('student/nodejscourse/results/create/{topic}', 'NodejsTaskResultController@create');
