@@ -179,7 +179,7 @@ class ExerciseFilesController extends Controller
     //
     $entity = \App\ExerciseFiles::find($id);
     /*
-    $dirpath = storage_path('app\public\\');
+    $dirpath = storage_path('app\\public\\\');
     File::delete(getPath($dirpath.$entity['guide']));
     File::delete(getPath($dirpath.$entity['supplement']));
     File::delete(getPath($dirpath.$entity['testfiles']));

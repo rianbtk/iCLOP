@@ -49,7 +49,7 @@ class UnityFileResultController extends Controller
           return Redirect::to('student/unitycourse/lfiles/create/'.$request->get('topic'))
           ->withErrors("File name should be ".$fileinfo['fileName']);
         } else {
-          $result = \App\FileResult::where('userid','=',Auth::user()->id)
+          $result = \App\UnityFileResult::where('userid','=',Auth::user()->id)
                 ->where('fileid','=',$request->get('fileid'))
                 ->get();
           if (count($result)>0) {
@@ -57,7 +57,7 @@ class UnityFileResultController extends Controller
             ->withErrors('File '.$fileinfo['fileName'].' was already submitted');
           } else {
             $rsc=$file->store('resource','public');
-            $entity=new \App\FileResult;
+            $entity=new \App\UnityFileResult;
 
             $entity->userid=Auth::user()->id;
             $entity->fileid=$request->get('fileid');
@@ -76,12 +76,12 @@ class UnityFileResultController extends Controller
   public function destroy(Request $request,$id)
   {
     //
-    $entity = \App\FileResult::find($id);
+    $entity = \App\UnityFileResult::find($id);
 
     $path = storage_path('app\\public\\').$entity['rscfile'];
     //$path = str_replace('\\',DIRECTORY_SEPARATOR,$path);
 
-    //$dirpath = storage_path('app\public\\');
+    //$dirpath = storage_path('app\\public\\\');
     File::delete(getPath($path));
 
     $entity->delete();
@@ -93,12 +93,12 @@ class UnityFileResultController extends Controller
   public function delete($id,$topic)
   {
     //
-    $entity = \App\FileResult::find($id);
+    $entity = \App\UnityFileResult::find($id);
 
     $path = storage_path('app\\public\\').$entity['rscfile'];
     //$path = str_replace('\\',DIRECTORY_SEPARATOR,$path);
 
-    //$dirpath = storage_path('app\public\\');
+    //$dirpath = storage_path('app\\public\\\');
     File::delete($path);
 
     $entity->delete();

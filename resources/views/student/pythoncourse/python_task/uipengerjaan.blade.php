@@ -624,7 +624,7 @@
                 $.ajax({
 
                     type: "GET",
-                    url: "{{ url('student/python-history/'. $infotopik->id_topik.'/'. $percobaan->id_percobaan) }}",
+                    url: "{{ url('student/pythoncourse/python-history/'. $infotopik->id_topik.'/'. $percobaan->id_percobaan) }}",
                     dataType: "json",
                     success: function( result ) {
 
@@ -746,7 +746,7 @@
                     var variabelid_percobaan = $('input[name="id_percobaan"]').val();
 
                     $.ajax({
-                        url: "http://127.0.0.1:8000/student/python-compile",
+                        url: "http://127.0.0.1:8000/student/pythoncourse/python-compile",
                         method: "GET", // GET | POST
                         data: {
                             code: editor.getSession().getValue(),

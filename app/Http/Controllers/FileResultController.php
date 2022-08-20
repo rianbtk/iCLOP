@@ -78,10 +78,7 @@ class FileResultController extends Controller
     //
     $entity = \App\FileResult::find($id);
 
-    $path = storage_path('app\\public\\').$entity['rscfile'];
-    //$path = str_replace('\\',DIRECTORY_SEPARATOR,$path);
-
-    //$dirpath = storage_path('app\public\\');
+    $path = storage_path('app/public/').$entity['rscfile'];
     File::delete(getPath($path));
 
     $entity->delete();
@@ -98,7 +95,7 @@ class FileResultController extends Controller
     $path = storage_path('app\\public\\').$entity['rscfile'];
     //$path = str_replace('\\',DIRECTORY_SEPARATOR,$path);
 
-    //$dirpath = storage_path('app\public\\');
+    //$dirpath = storage_path('app\\public\\\');
     File::delete($path);
 
     $entity->delete();

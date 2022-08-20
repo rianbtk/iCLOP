@@ -1,9 +1,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{URL::to('admin/main')}}" class="brand-link">
-      <img src="{{asset('lte/dist/img/logo-aplas.png')}}" alt="APLAS logo" class="brand-image elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">WebApps</span>
+    <a href="#" class="brand-link">
+      <img src="{{asset('lte/dist/img/iclop-logo.png')}}" alt="iCLOP logo" class="brand-image elevation-3"
+           style="width:120px;height:60px;">
+           <br>
+      <span class="brand-text font-weight-light" style="font-size:140%;"> &nbsp;  ADMIN</span>
     </a>
 
     <!-- Sidebar -->
@@ -203,6 +204,24 @@
           </a>
         </li>
         <li class="nav-item">
+                    <a href="{{URL::to('/admin/python/topic')}}" class="nav-link">
+                        <i class="nav-icon fab fa-python"></i>
+                        <p>
+                            Python Learning
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{URL::to('/admin/python/percobaan')}}" class="nav-link">
+                        <i class="nav-icon fab fa-python"></i>
+                        <p>
+                            Python Percobaan
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
           <a href="{{URL::to('admin/resetpassword')}}" class="nav-link">
             <i class="nav-icon fas fa-hand-pointer"></i>
             <p>

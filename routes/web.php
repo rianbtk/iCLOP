@@ -161,7 +161,7 @@ Route::group(['middleware' => ['auth', 'student']], function() {
   // tampilan feedback
   Route::get('/student/pythoncourse/python/feedback/{id_topik}/{id_percobaan}', [ExercisePythonController::class, 'feedback']);
   //Compile Program
-  Route::get('/student/python-compile', [ExercisePythonController::class, 'compiler']);
+  Route::get('/student/pythoncourse/python-compile', [ExercisePythonController::class, 'compiler']);
   //tampilan data validation
   Route::get('student/pythoncourse/python/tampil-data-validation', [ExercisePythonController::class, 'dataValidation']);
   //tampilan result mahasiswa
@@ -169,7 +169,7 @@ Route::group(['middleware' => ['auth', 'student']], function() {
   Route::get('pythonfeedback', [ExercisePythonController::class, 'feedback_submit']);
 
 
-  Route::get("student/python-history/{id_topik}/{id_percobaan}", [ExercisePythonController::class, 'submit_history']);
+  Route::get("student/pythoncourse/python-history/{id_topik}/{id_percobaan}", [ExercisePythonController::class, 'submit_history']);
 
   Route::get('/student/androidcourse/asynctask', 'StudentController@asynctask');
   Route::get('/student/androidcourse/firebase', 'StudentController@firebase');

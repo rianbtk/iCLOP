@@ -177,7 +177,7 @@ class LearningFileController extends Controller {
     //
     $entity = \App\LearningFile::find($id);
 /*
-    $dirpath = storage_path('app\public\\');
+    $dirpath = storage_path('app\\public\\\');
     File::delete(getPath($dirpath.$entity['guide']));
     File::delete(getPath($dirpath.$entity['supplement']));
     File::delete(getPath($dirpath.$entity['testfiles']));

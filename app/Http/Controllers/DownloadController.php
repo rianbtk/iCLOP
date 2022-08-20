@@ -21,7 +21,7 @@ class DownloadController extends Controller
   }
 
   public function downFile($file_name, $topic_name, $doctype, $folder) {
-    $dirname = str_replace('\\',DIRECTORY_SEPARATOR,'app\public\\'.$folder.'\\');
+    $dirname = str_replace('\\',DIRECTORY_SEPARATOR,'app\\public\\'.$folder.'\\');
     $file_path = storage_path($dirname.$file_name);
     $ext = pathinfo($file_path, PATHINFO_EXTENSION);
     $headers = array('Content-Type' => 'application/zip','Content-Type' => 'application/pdf',
@@ -34,16 +34,6 @@ class DownloadController extends Controller
 
 
   public function downLearning($file_name, $topic_name, $doctype) {
-/*
-    $dirname = str_replace('\\',DIRECTORY_SEPARATOR,'app\public\learning\\');
-    $file_path = storage_path($dirname.$file_name);
-    $ext = pathinfo($file_path, PATHINFO_EXTENSION);
-    $headers = array('Content-Type' => 'application/zip','Content-Type' => 'application/pdf','Content-Type' => 'application/rar');
-
-    $fname=$topic_name.'-'.$doctype.'.'.$ext;
-    $this->saveHistory($file_path,$topic_name,$doctype,$fname);
-    return response()->download($file_path, $fname, $headers);
-*/
 	return $this->downFile($file_name, $topic_name, $doctype,'learning');
   }
 

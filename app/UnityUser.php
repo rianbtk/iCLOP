@@ -40,7 +40,7 @@ class UnityUser extends Authenticatable
 
     public function checkRoleId($roleid) {
       if ($roleid=='student') {
-        return Redirect::to('student/Unitycourse/home');
+        return Redirect::to('student/unitycourse/home');
       } elseif ($roleid=='teacher') {
         return Redirect::to('teacher/home');
       } elseif ($roleid=='admin') {
