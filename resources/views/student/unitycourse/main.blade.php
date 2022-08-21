@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+        <div class="card-header" style="background-color: #F8F8FF">
                 <h3 class="card-title">Start to learn Android Programming with iCLOP</h3>
                 <div class="card-tools">
 

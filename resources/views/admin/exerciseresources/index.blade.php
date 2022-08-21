@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">APLAS Exercise Resources</h3>
+                <h3 class="card-title">iCLOP Exercise Resources</h3>
                 <div class="card-tools">
                     <a href="{{ URL::to('/admin/exerciseresources/create')}}" class="btn btn-tool">
                         <i class="fa fa-plus"></i>

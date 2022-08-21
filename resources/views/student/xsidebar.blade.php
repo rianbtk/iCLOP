@@ -36,7 +36,7 @@
         >
       </li>
 	  
-	  <li class="header"><b>APLAS (Android)</b></li>
+	  <li class="header"><b>iCLOP (Android)</b></li>
       <li class="active">
 		<a href="http://aplas.polinema.ac.id"><i class="fa fa-dashboard"></i>
 		<span>Start Learning</span></a>

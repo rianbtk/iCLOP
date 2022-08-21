@@ -28,7 +28,7 @@
             <a href="{{URL::to('admin/')}}" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>
-                APLAS Summary
+                iCLOP Summary
               </p>
             </a>
           </li>
@@ -103,7 +103,7 @@
               <i class="nav-icon fas fa-trophy"></i>
               <p>
                Result Summary
-                <span class="right badge badge-danger">New</span>
+                
               </p>
             </a>
           </li>
@@ -113,7 +113,7 @@
               <i class="nav-icon fas fa-trophy"></i>
               <p>
                Completeness
-                <span class="right badge badge-danger">New</span>
+                
               </p>
             </a>
           </li>
@@ -151,7 +151,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               UI Student Result
-              <span class="right badge badge-danger">New</span>
+              
             </p>
           </a>
         </li>
@@ -161,7 +161,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               UI Result Summary
-              <span class="right badge badge-danger">New</span>
+              
             </p>
           </a>
         </li>
@@ -171,7 +171,7 @@
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Android Exercise
-              <span class="right badge badge-danger">New</span>
+              
             </p>
           </a>
         </li>
@@ -181,7 +181,7 @@
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Exercise Files
-              <span class="right badge badge-danger">New</span>
+              
             </p>
           </a>
         </li>
@@ -190,7 +190,7 @@
             <i class="nav-icon fas fa-chevron-circle-right"></i>
             <p>
               Exercise Resources
-              <span class="right badge badge-danger">New</span>
+              
             </p>
           </a>
         </li>
@@ -199,7 +199,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               Exercise Summary
-              <span class="right badge badge-danger">New</span>
+              
             </p>
           </a>
         </li>

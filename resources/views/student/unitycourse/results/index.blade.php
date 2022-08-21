@@ -3,11 +3,11 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+        <div class="card-header" style="background-color: #F8F8FF">
                 <h3 class="card-title">Student's Task Results Submission</h3>
 
          </div>
-         <div class="card-body">
+         <div class="card-body" style="background-color: #F8F8FF">
             @if (Session::has('message'))
             <div id="alert-msg" class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>

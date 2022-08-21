@@ -40,7 +40,7 @@
                                     <td>{{ $entity['checkstat'] }}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-info" href="{{ URL::to('/student/exercisevalid/'.$entity['id']) }}"><i class="fa fa-eye">&nbsp;Show Detail</i></a>
+                                            <a class="btn btn-info" href="{{ URL::to('/student/fluttercourse/exercisevalid/'.$entity['id']) }}"><i class="fa fa-eye">&nbsp;Show Detail</i></a>
                                         </div>
                                     </td>
 
