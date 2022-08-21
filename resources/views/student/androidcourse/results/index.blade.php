@@ -3,28 +3,23 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+        <div class="card-header" style="background-color: #F8F8FF">
                 <h3 class="card-title">Student's Task Results Submission</h3>
 
          </div>
-         <div class="card-body">
+         <div class="card-body" style="background-color: #F8F8FF">
             @if (Session::has('message'))
             <div id="alert-msg" class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
                 {{ Session::get('message') }}
             </div>
             @endif
-             {{ Form::open(['method' => 'GET']) }}
+            {{ Form::open(['method' => 'GET']) }}
             <div class="form-group">
-              {!! Form::label('topic', 'Topic:') !!}
+              {!! Form::label('topic', 'Learning Topic:') !!}
               {!! Form::select('topicList', $items , $filter, ['class' => 'form-control', 'id' => 'topicList', 'onchange' => 'this.form.submit();']) !!}
              {{ Form::close() }}
-            <!--
-              {!! Form::label('topic', 'Topic:') !!}
-              {!! Form::select('topic', $items , null, ['class' => 'form-control', 'onchange' => 'doSomething(this)']) !!}
-            -->
             </div>
-
             @php ($complete = true)
             <div class="row">
 
@@ -32,7 +27,7 @@
                   {!! Form::label('tit1', 'Result of Each Task:') !!}
 
                   @if ($valid=='0')
-                   <a class="btn btn-success" href="{{ URL::to('/student/results/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Task Result</a>
+                   <a class="btn btn-success" href="{{ URL::to('/student/androidcourse/results/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Task Result</a>
                    @endif
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -64,14 +59,12 @@
                                 <td class="text-center"><img src="{{ asset('storage/'.$entity['imgFile']) }}" width="120"/></td>
                                 <td>{{ $entity['comment'] }}</td>
                                 <td class="text-center">
-                                    <form method="POST" action="{{ URL::to('/student/results/'.$entity['id']) }}">
+                                    <form method="POST" action="{{ URL::to('/student/androidcourse/results/'.$entity['id']) }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="hidden" name="topic" value="{{ $filter }}" />
                                         <div class="btn-group">
-                                            <!--<a class="btn btn-info" href="{{ URL::to('/student/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
-                                            -->
-                                            <a class="btn btn-success" href="{{ URL::to('/student/results/'.$entity['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
+                                            <a class="btn btn-success" href="{{ URL::to('/student/androidcourse/results/'.$entity['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </form>
@@ -130,9 +123,9 @@
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="hidden" name="topic" value="{{ $filter }}" />
                                         <div class="btn-group">
-                                            <!--<a class="btn btn-info" href="{{ URL::to('/student/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
+                                            <!--<a class="btn btn-info" href="{{ URL::to('/student/androidcourse/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
                                             -->
-                                            <a class="btn btn-success" href="{{ URL::to('/student/lfiles/'.$lfile['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
+                                            <!-- <a class="btn btn-success" href="{{ URL::to('/student/lfiles/'.$lfile['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a> -->
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </form>

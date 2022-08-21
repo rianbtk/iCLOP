@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/unitycourse/home')
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -47,7 +47,7 @@
                                 <td>{{ $entity['checkstat'] }}</td>
                                 <td class="text-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-info" href="{{ URL::to('/student/valid/'.$entity['id']) }}"><i class="fa fa-eye">&nbsp;Show Detail</i></a>
+                                            <a class="btn btn-info" href="{{ URL::to('/student/unitycourse/valid/'.$entity['id']) }}"><i class="fa fa-eye">&nbsp;Show Detail</i></a>
                                         </div>
                                 </td>
                             </tr>

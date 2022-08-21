@@ -1,4 +1,4 @@
-@extends('student/home')
+@extends('student/androidcourse/home')
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -47,10 +47,15 @@
                         </div>
                     </div>
                     <div class="card-footer">
+                        <input type="hidden" name="topic" value="{{ $topic['id'] }}" />
+                        <input type="button" value="Back" onclick="history.back()" class="btn btn-outline-info">
+                        {{ Form::submit('Save', ['class' => 'btn btn-primary pull-right']) }}
+                    </div>
+                    <!-- <div class="card-footer">
                         <input type="button" value="Back" onclick="history.back()" class="btn btn-outline-info">
                         <input type="hidden" name="topic" value="{{ $topic['id'] }}" />
                         {{ Form::submit('Save', ['class' => 'btn btn-primary pull-right']) }}
-                    </div>
+                    </div> -->
                 </div>
             <!-- </form> -->
             {{ Form::close() }}

@@ -1,4 +1,4 @@
-@extends('admin/admin')
+@extends('student/androidcourse/home')
 @section('content')
     <div class="row">
         <div class="col-12">

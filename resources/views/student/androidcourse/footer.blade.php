@@ -4,5 +4,5 @@
       Login as {{ Auth::user()->roleid }}
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 <a href="https://aplas.org">Android Programming Learning Assistance System (APLAS)</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022 <a href="http://learning.aplas.online/iclop/">Intelligent Computer Assisted Programming Learning Platform(iCLOP)</a>.</strong> All rights reserved.
   </footer>

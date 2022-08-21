@@ -110,11 +110,17 @@ Route::group(['middleware' => ['auth', 'teacher']], function() {
 });
 
 Route::group(['middleware' => ['auth', 'student']], function() {
+//Android//
+  Route::patch('/student/androidcourse/results/valsub',['as' => 'results.valsub', 'uses' => 'AndroidTaskResultController@valsub']);
+  Route::get('student/androidcourse/results/create/{topic}', 'AndroidTaskResultController@create');
   Route::get('/student/androidcourse', 'StudentController@androidcourse');
   Route::get('/student/androidcourse/topic', 'StudentController@androidcoursetopic');
-  Route::get('/student/androidcourse', 'StudentController@androidcourse');
-  Route::resource('/student/androidcourse/tasks', 'TaskStdController');
-  Route::resource('/student/androidcourse/results', 'TaskResultController');
+  Route::resource('/student/androidcourse/tasks', 'AndroidController');
+  Route::resource('/student/androidcourse/results', 'AndroidResultController');
+  Route::resource('/student/androidcourse/lfiles', 'AndroidFileResultController');
+  Route::get('student/lfiles/androidcourse/create/{topic}', 'AndroidFileResultController@create');
+  Route::get('student/lfiles/androidcourse/valid/{topic}', 'AndroidFileResultController@submit');
+  Route::get('student/lfiles/androidcourse/delete/{id}/{topic}', 'AndroidFileResultController@delete');
 // Flutter //
   Route::patch('/student/fluttercourse/results/valsub',['as' => 'results.valsub', 'uses' => 'FlutterTaskResultController@valsub']);
   Route::get('student/fluttercourse/results/create/{topic}', 'FlutterTaskResultController@create');
