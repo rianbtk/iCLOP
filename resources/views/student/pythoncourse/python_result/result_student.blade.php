@@ -2,7 +2,7 @@
 
 <!-- untuk mengisi yield pada home.blade.php -->
 @section('script')
-
+ 
 <!-- Code Ace Library For Python -->
 <script src="{{URL::to('/js/ace/ace/ace.js')}}"></script>
 
