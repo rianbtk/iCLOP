@@ -27,7 +27,7 @@
                   {!! Form::label('tit1', 'Result of Each Task:') !!}
 
                   @if ($valid=='0')
-                   <a class="btn btn-success" href="{{ URL::to('/student/fluttercourse/results/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Task Result</a>
+                   <a class="btn btn-success" href="{{ URL::to('student/fluttercourse/results/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Task Result</a>
                    @endif
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -59,12 +59,12 @@
                                 <td class="text-center"><img src="{{ asset('storage/'.$entity['imgFile']) }}" width="120"/></td>
                                 <td>{{ $entity['comment'] }}</td>
                                 <td class="text-center">
-                                    <form method="POST" action="{{ URL::to('/student/fluttercourse/results/'.$entity['id']) }}">
+                                    <form method="POST" action="{{ URL::to('student/fluttercourse/results/'.$entity['id']) }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="hidden" name="topic" value="{{ $filter }}" />
                                         <div class="btn-group">
-                                            <a class="btn btn-success" href="{{ URL::to('/student/fluttercourse/results/'.$entity['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
+                                            <a class="btn btn-success" href="{{ URL::to('student/fluttercourse/results/'.$entity['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </form>
@@ -85,7 +85,7 @@
                 <div class="col-md-12">
                   {!! Form::label('tit2', 'Learning Files Submission:') !!}
                   @if ($valid=='0')
-                  <a class="btn btn-info" href="{{ URL::to('/student/lfiles/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Learning File</a>
+                  <a class="btn btn-info" href="{{ URL::to('student/lfiles/create/'.$filter)}}"><i class="fa fa-plus"></i>&nbsp;Submit a Learning File</a>
                   @endif
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -118,14 +118,13 @@
                                 </td>
 
                                 <td class="text-center">
-                                    <form method="POST" action="{{ URL::to('/student/lfiles/'.$lfile['id']) }}">
+                                    <form method="POST" action="{{ URL::to('student/lfiles/'.$lfile['id']) }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="hidden" name="topic" value="{{ $filter }}" />
                                         <div class="btn-group">
-                                            <!--<a class="btn btn-info" href="{{ URL::to('/student/fluttercourse/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
-                                            -->
-                                            <!-- <a class="btn btn-success" href="{{ URL::to('/student/lfiles/'.$lfile['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a> -->
+                                            <a class="btn btn-info" href="{{ URL::to('student/results/'.$entity['id']) }}"><i class="fa fa-eye"></i></a>
+                                            <a class="btn btn-success" href="{{ URL::to('student/lfiles/'.$lfile['id'].'/edit') }}"><i class="fa fa-pencil-alt"></i></a>
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </form>
@@ -144,7 +143,7 @@
                 <div class="col-md-12">
                   @if ($valid=='0')
                     @if ($complete)
-                    <a class="btn btn-danger" href="{{ URL::to('/student/lfiles/valid/'.$filter)}}"><i class="fa fa-check-square"></i>&nbsp;Validate This Learning</a>
+                    <a class="btn btn-danger" href="{{ URL::to('student/lfiles/valid/'.$filter)}}"><i class="fa fa-check-square"></i>&nbsp;Validate This Learning</a>
                     @else
                     <span class="btn btn-block" ><i class="fa fa-frown"></i>&nbsp;Submission is Not Complete</a>
                     @endif

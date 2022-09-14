@@ -48,6 +48,16 @@
               </p>
             </a>
           </li>
+          {{-- Python --}}
+                <li class="nav-item">
+                    <a href="{{URL::to('teacher/python/resultstudent')}}" class="nav-link">
+                        <i class="nav-icon fas fa-trophy"></i>
+                        <p>
+                            Python Result
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
           <li class="nav-item">
             <a href="{{URL::to('teacher/rankview')}}" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
@@ -69,7 +79,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               Classroom Result
-              <span class="right badge badge-danger">New</span>
+              <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
         </li>
@@ -78,7 +88,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               Passed Topic Result
-              <span class="right badge badge-danger">New</span>
+              <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
         </li>
@@ -87,7 +97,7 @@
               <i class="nav-icon fas fa-hand-pointer"></i>
               <p>
                 Completeness
-                <span class="right badge badge-danger">New</span>
+                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
            </a>
         </li>
@@ -96,7 +106,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               UI Class Result
-              <span class="right badge badge-danger">New</span>
+              <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
         </li>
@@ -105,7 +115,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               UI Student Result
-              <span class="right badge badge-danger">New</span>
+              <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
         </li>
@@ -114,7 +124,7 @@
             <i class="nav-icon fas fa-trophy"></i>
             <p>
               UI Learning Result
-              <span class="right badge badge-danger">New</span>
+              <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
         </li>
@@ -123,20 +133,10 @@
               <i class="nav-icon fas fa-hand-pointer"></i>
               <p>
                 JPLAS Result
-                <span class="right badge badge-danger">New</span>
+                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
-          {{-- Python --}}
-                <li class="nav-item">
-                    <a href="{{URL::to('teacher/python/resultstudent')}}" class="nav-link">
-                        <i class="nav-icon fas fa-trophy"></i>
-                        <p>
-                            Python Result
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

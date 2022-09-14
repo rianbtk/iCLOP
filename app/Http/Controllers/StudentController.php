@@ -21,6 +21,12 @@ class StudentController extends Controller
   public function fluttercoursetopic() {
     return view('student/fluttercourse/topic');
   }
+  public function unitycourse() {
+    return view('student/unitycourse/main');
+  }
+  public function unitycoursetopic() {
+    return view('student/unitycourse/topic');
+  }
   public function nodejscourse() {
     return view('student/nodejscourse/main');
   }
@@ -31,27 +37,27 @@ class StudentController extends Controller
     return view('student/pythoncourse/main');
   }
 
-  public function asynctask() {
-    return view('student/androidcourse/asynctask/index');
-  }
-  public function firebase() {
-    return view('student/androidcourse/firebase/index');
-  }
+  // public function asynctask() {
+  //   return view('student/androidcourse/asynctask/index');
+  // }
+  // public function firebase() {
+  //   return view('student/androidcourse/firebase/index');
+  // }
   
   // unity interface
-  public function unitycourse() {
-    return view('student/unitycourse/main');
-  }
-  public function unitycoursetest() {
-    return view('student/unitycourse/course/index');
-  }
-  public function unitycoursepage() {
-    return view('student/unitycourse/page/index');
-  }
-    public function nodejscourseBasicHTML() {
-    return view('student/nodejscourse/basicHTML/index');
-  }
-  public function nodejscourseDynamicContent() {
-    return view('student/nodejscourse/DynamicContent/index');
-  }
+//   public function unitycourse() {
+//     return view('student/unitycourse/main');
+//   }
+//   public function unitycoursetest() {
+//     return view('student/unitycourse/course/index');
+//   }
+//   public function unitycoursepage() {
+//     return view('student/unitycourse/page/index');
+//   }
+//     public function nodejscourseBasicHTML() {
+//     return view('student/nodejscourse/basicHTML/index');
+//   }
+//   public function nodejscourseDynamicContent() {
+//     return view('student/nodejscourse/DynamicContent/index');
+//   }
 }

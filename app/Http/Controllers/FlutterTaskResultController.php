@@ -15,7 +15,7 @@ class FlutterTaskResultController extends Controller
 $check=\App\FlutterUser::find(Auth::user()->id);
 if ($check->status!='active') return view('student/fluttercourse/home')->with(['status'=>$check->status]);
 
-      $filter = $request->input('topicList','6');
+      $filter = $request->input('topicList','15');
       if ($filter=='0') {
         $entities=\App\FlutterTaskResult::where('userid','=',Auth::user()->id);
       } else {

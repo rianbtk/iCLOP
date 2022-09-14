@@ -178,25 +178,6 @@ private function validateGithubLink($userid, $topic, $link, $projname) {
     //
     $trimmedlink = trim($link);
     if ($this->validateUrl($trimmedlink,$projname)) {
-      /*
-        $zipFile=$file->store('results','public');
-
-        if ($zipFile!='') {
-           $entity=new \App\FlutterStudentSubmit;
-
-           $entity->userid=$userid;
-           $entity->topic=$topic;
-           $entity->validstat="valid";
-           $entity->projectfile=$zipFile;
-
-           $entity->save();
-
-           $data = \App\FlutterTopic::find($topic);
-           Session::flash('message','Topic '.$data['name'].' Validation is Success');
-        } else {
-           Session::flash('message','Storing file '.$request->file('zipfile').' was FAILED');
-        }
-	*/
 	$entity=new \App\FlutterStudentSubmit;
 
         $entity->userid=$userid;
@@ -322,7 +303,7 @@ private function endsWith($haystack, $needle) {
                 }
           } else { //clicking radio button
                 return Redirect::to('student/fluttercourse/results?topicList='.$request->get('topic').'&option='.$request->get('option'));
-                //'&submit='.$request->submitbutton);
+                // '&submit='.$request->submitbutton);
           }
 
         } else {   //echo $request;

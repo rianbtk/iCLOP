@@ -102,6 +102,7 @@
                             @foreach($entities as $entity)
                             <tr>
                                 <td class="text-center">{{ $entity['taskno'] }}</td>
+                            
                                 <td>{{ $entity['desc'] }}</td>
                                 <td>{{ $entity['name'] }}</td>
                                 <td class="text-center">

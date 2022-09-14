@@ -75,7 +75,7 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class='bx bxl-android'></i></div>
               <h4 class="title"><a href="">Android</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p class="description">Android is an open source operating system, and Google releases the code under the Apache License.[2] The open source code and licensing licenses on Android allow the software to be freely modified and distributed by device makers</p>
             </div>
           </div>
 
@@ -115,7 +115,7 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class='bx bxs-game'></i></div>
               <h4 class="title"><a href="">Unity</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <p class="description">Unity 3D is a software engine for developing games with casual, AR (Augmented Reality) and VR (Virtual Reality) genres. The game results from Unity 3D are cross-platform. Which means you can publish your game to multiple platforms.</p>
             </div>
           </div>
 
@@ -130,7 +130,7 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class='bx bxl-flutter'></i></div>
               <h4 class="title"><a href="">Flutter Course</a></h4>
-              <p class="description">Flutter is an open-source UI software development kit created by Google. It is used to develop cross-platform applications for Android, iOS, Linux, macOS, Windows, Google Fuchsia, and the web from a single codebase. First described in 2015, Flutter was released in May 2017</p>
+              <p class="description">   Flutter was developed by Google which is a multiplatform open source framework with one programming code base, the Dart language. Flutter provides an easy-to-use UI and Widget to build multiplatform apps</p>
             </div>
           </div>
 
@@ -140,7 +140,7 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class='bx bxl-medium-old'></i></div>
               <h4 class="title"><a href="">MysqlCourse</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <p class="description">MySQL is a DBMS (Database Management System) using SQL (Structured Query Language) commands.So, MySQL is a free database server licensed under the GNU General Public License (GPL) so you can use it for personal or commercial purposes without having to pay for an existing license.</p>
             </div>
           </div>
 
