@@ -267,8 +267,10 @@ Route::group(['middleware' => ['auth', 'student']], function () {
   Route::resource('/student/exercise', 'ExerciseStdController');
   Route::resource('/student/exercisesubmission', 'ExerciseSubmissionController');
   Route::resource('/student/exercisevalid', 'ExerciseStdValidController');
+  
   /* ----------------------------------- SQL ---------------------------------- */
- 
+  Route::group(['prefix' => 'student/sql'], function () {
+    Route::group(['prefix' => 'pembelajaran'], function () {
       Route::get('', 'SQLController@learning')->name('student sql learning');
       Route::get('/read', 'SQLController@learningRead')->name('student sql learning read');
       Route::get('/detail/{id}', 'SQLController@learningRead')->name('student sql learning detail');
