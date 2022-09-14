@@ -94,8 +94,8 @@
               <p class="description">Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small- and large-scale projects.</p>
             </div>
           </div>
-
-          <div onclick="window.open('Database','mywindow');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
+          {{-- mysql --}}
+          <div onclick="window.open('{{URL::to('/student/sql/')}}','sql-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
               <div class="icon"><i class='bx bxs-data'></i></div>
               <h4 class="title"><a href="">Database</a></h4>
@@ -136,7 +136,7 @@
 
           <!-- // postgree // -->
 
-            <div onclick="window.open('{{URL::to('/student/mysqlcourse/')}}','mysqlcourse-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
+            <div onclick="window.open('{{URL::to('/student/sqlcourse/')}}','sqlcourse-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class='bx bxl-medium-old'></i></div>
               <h4 class="title"><a href="">MysqlCourse</a></h4>

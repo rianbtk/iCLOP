@@ -37,7 +37,7 @@ class StudentController extends Controller
     return view('student/pythoncourse/main');
   }
   public function sql() {
-    return view('student/sql/learning');
+    return view('student/sql/main');
   }
 
   // public function asynctask() {
