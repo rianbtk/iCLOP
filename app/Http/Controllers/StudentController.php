@@ -36,6 +36,9 @@ class StudentController extends Controller
   public function pythoncourse() {
     return view('student/pythoncourse/main');
   }
+  public function sql() {
+    return view('student/sql/learning');
+  }
 
   // public function asynctask() {
   //   return view('student/androidcourse/asynctask/index');
