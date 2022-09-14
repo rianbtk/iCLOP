@@ -8,8 +8,8 @@ path_answer = sys.argv[1]
 filename = sys.argv[2]
 pc = importlib.import_module(path_answer, ".")
 
-# pc = importlib.import_module("jawaban.62cfe7f907217_1657792505")
-# filename = '62cfe7f907217_1657792505'
+# pc = importlib.import_module("jawaban.62f0a0e7b701b_1659936999")
+# filename = '62f0a0e7b701b_1659936999'
 
 # cmd = subprocess.run([sys.executable, f"%s/jawaban/{filename}.py" % (Path(__file__).parent.absolute())], capture_output=True)
 cmd = subprocess.run([sys.executable, f"%s/jawaban/{filename}.py" % (Path(__file__).parent.absolute())], capture_output=True)

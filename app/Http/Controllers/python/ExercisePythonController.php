@@ -138,8 +138,9 @@ class ExercisePythonController extends Controller
         // file name (nama file)
         $fileName = uniqid().'_'.strtotime("now");
 
-        // lokasi penyimpanan
+        // // lokasi penyimpanan
         $filePath = "python-resources/unittest/jawaban/". $fileName . '.py';
+        
 
         // file terbuat
         $programFile = fopen($filePath, "w");
@@ -161,10 +162,9 @@ class ExercisePythonController extends Controller
             $packageDirectory = "jawaban.". $fileName;
             $fileUnittest    = $dt_percobaan->filetest;
 
-            $unittest = "python-resources/unittest/". $fileUnittest;
+            $unittest = "C:\\xampp\\htdocs\\iCLOP\\public\\python-resources\\unittest\\". $fileUnittest;
 
-            $output = shell_exec("C:\Users\A.S.H\AppData\Local\Programs\Python\Python310\python.exe".$unittest." ".$packageDirectory." ".$fileName." --verbose 2>&1");
-
+            $output = shell_exec("C:\Users\Rania\AppData\Local\Programs\Python\Python310\python.exe ".$unittest." ".$packageDirectory." ".$fileName." --verbose 2>&1");
 
             $validation_detail = "";
             $status = "";

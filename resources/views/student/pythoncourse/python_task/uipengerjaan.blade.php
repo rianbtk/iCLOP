@@ -4,7 +4,7 @@
 @section('script')
 
 <!-- Code Ace Library For Python -->
-<script src="{{URL::to('/js/ace/ace/ace.js')}}"></script>
+<!-- <script src={{ asset('js/ace/ace.js') }}></script> -->
 
 <!-- Code Ace Library For Python -->
 @endsection
@@ -578,7 +578,7 @@
 
         })
     </script>
-
+    <script src={{ asset('js/ace/ace.js') }}></script>
     <script>
 
 
