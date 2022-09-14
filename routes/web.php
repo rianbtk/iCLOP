@@ -75,6 +75,57 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
   Route::get('/admin/python/proseshapustopik/{id_topik}', [PythonLearningTopicsController::class, 'proses_hapus']);
   Route::get('/admin/python/proseshapuspercobaan/{id_percobaan}', [PythonPercobaanController::class, 'proses_hapus']);
 
+      /* ----------------------------------- SQL ---------------------------------- */
+      Route::group(['prefix' => 'admin/sql'], function () {
+        Route::group(['prefix' => 'pembelajaran'], function () {
+            Route::get('', 'SQLController@learning')->name('admin sql learning');
+            Route::get('/read', 'SQLController@learningRead')->name('admin sql learning read');
+            Route::get('/detail/{id}', 'SQLController@learningRead')->name('admin sql learning detail');
+            Route::post('/create', 'SQLController@learningStore')->name('admin sql learning create');
+            Route::post('/update/{id}', 'SQLController@learningUpdate')->name('admin sql learning update');
+            Route::get('/delete/{id}', 'SQLController@learningDelete')->name('admin sql learning delete');
+  
+            Route::group(['prefix' => 'log'], function () {
+                Route::get('/read', 'SQLController@learningLogRead')->name('admin sql learning log read');
+                Route::get('/detail/{id}', 'SQLController@learningLogRead')->name('admin sql learning log detail');
+            });
+        });
+  
+        Route::group(['prefix' => 'praktek'], function () {
+            Route::get('', 'SQLController@practice')->name('admin sql practice');
+            Route::get('/read', 'SQLController@practiceRead')->name('admin sql practice read');
+            Route::get('/detail/{id}', 'SQLController@practiceRead')->name('admin sql practice detail');
+            Route::post('/create', 'SQLController@practiceStore')->name('admin sql practice create');
+            Route::post('/update/{id}', 'SQLController@practiceUpdate')->name('admin sql practice update');
+            Route::get('/delete/{id}', 'SQLController@practiceDelete')->name('admin sql practice delete');
+  
+            Route::get('/log/read', 'SQLController@practiceLogRead')->name('admin sql practice log read');
+        });
+  
+        Route::group(['prefix' => 'latihan'], function () {
+            Route::get('', 'SQLController@exercise')->name('admin sql exercise');
+            Route::get('/read', 'SQLController@exerciseRead')->name('admin sql exercise read');
+            Route::get('/detail/{id}', 'SQLController@exerciseRead')->name('admin sql exercise detail');
+            Route::post('/create', 'SQLController@exerciseStore')->name('admin sql exercise create');
+            Route::post('/update/{id}', 'SQLController@exerciseUpdate')->name('admin sql exercise update');
+            Route::get('/delete/{id}', 'SQLController@exerciseDelete')->name('admin sql exercise delete');
+  
+            Route::get('/log/read', 'SQLController@exerciseLogRead')->name('admin sql exercise log read');
+        });
+  
+        Route::group(['prefix' => 'ujian'], function () {
+            Route::get('', 'SQLController@exam')->name('admin sql exam');
+            Route::get('/read', 'SQLController@examRead')->name('admin sql exam read');
+            Route::get('/detail/{id}', 'SQLController@examRead')->name('admin sql exam detail');
+            Route::post('/create', 'SQLController@examStore')->name('admin sql exam create');
+            Route::post('/update/{id}', 'SQLController@examUpdate')->name('admin sql exam update');
+            Route::get('/delete/{id}', 'SQLController@examDelete')->name('admin sql exam delete');
+  
+            Route::get('/log/read', 'SQLController@examLogRead')->name('admin sql exam log read');
+        });
+    });
+    /* ----------------------------------- SQL ---------------------------------- */
+
 
 });
 
@@ -233,6 +284,65 @@ Route::middleware(['auth'])->group(function () {
     Route::get('download/jpack/{file}/{topic}', 'DownloadController@downJplasPackage')->name('file-download');
     Route::get('download/jguide/{file}/{topic}', 'DownloadController@downJplasGuide')->name('file-download');
     Route::get('download/jresult/{file}/{topic}', 'DownloadController@downJplasResult')->name('file-download');
+
+     /* ----------------------------------- SQL ---------------------------------- */
+     Route::group(['prefix' => 'student/sql'], function () {
+      Route::group(['prefix' => 'pembelajaran'], function () {
+          Route::get('', 'SQLController@learning')->name('student sql learning');
+          Route::get('/read', 'SQLController@learningRead')->name('student sql learning read');
+          Route::get('/detail/{id}', 'SQLController@learningRead')->name('student sql learning detail');
+          Route::post('/create', 'SQLController@learningStore')->name('student sql learning create');
+          Route::post('/update/{id}', 'SQLController@learningUpdate')->name('student sql learning update');
+          Route::get('/delete/{id}', 'SQLController@learningDelete')->name('student sql learning delete');
+          Route::get('/kerjakan/{id}', 'SQLController@learningDo')->name('student sql learning do');
+          Route::post('/kerjakan/{id}', 'SQLController@learningDoExec')->name('student sql learning do exec');
+          Route::get('/reset', 'SQLController@learningDoReset')->name('student sql learning do reset');
+      });
+
+      Route::group(['prefix' => 'praktek'], function () {
+          Route::get('', 'SQLController@practice')->name('student sql practice');
+          Route::get('/read', 'SQLController@practiceRead')->name('student sql practice read');
+          Route::get('/detail/{id}', 'SQLController@practiceRead')->name('student sql practice detail');
+          Route::post('/create', 'SQLController@practiceStore')->name('student sql practice create');
+          Route::post('/update/{id}', 'SQLController@practiceUpdate')->name('student sql practice update');
+          Route::get('/delete/{id}', 'SQLController@practiceDelete')->name('student sql practice delete');
+          Route::get('/kerjakan/{id}', 'SQLController@practiceDo')->name('student sql practice do');
+          Route::get('/kerjakan/{id}/{question}', 'SQLController@practiceDo')->name('student sql practice do question');
+          Route::post('/kerjakan/{id}', 'SQLController@practiceDoExec')->name('student sql practice do exec');
+          Route::get('/reset', 'SQLController@practiceDoReset')->name('student sql practice do reset');
+      });
+
+      Route::group(['prefix' => 'latihan'], function () {
+          Route::get('', 'SQLController@exercise')->name('student sql exercise');
+          Route::get('/read', 'SQLController@exerciseRead')->name('student sql exercise read');
+          Route::get('/detail/{id}', 'SQLController@exerciseRead')->name('student sql exercise detail');
+          Route::post('/create', 'SQLController@exerciseStore')->name('student sql exercise create');
+          Route::post('/update/{id}', 'SQLController@exerciseUpdate')->name('student sql exercise update');
+          Route::get('/delete/{id}', 'SQLController@exerciseDelete')->name('student sql exercise delete');
+
+          Route::get('/start', 'SQLController@exerciseStart')->name('student sql exercise start');
+          Route::get('/kerjakan/detail/{id}', 'SQLController@exerciseDoDetail')->name('student sql exercise do detail');
+          Route::get('/kerjakan/{id}', 'SQLController@exerciseDo')->name('student sql exercise do');
+          Route::post('/kerjakan/{id}', 'SQLController@exerciseAnswer')->name('student sql exercise answer');
+          Route::get('/complete', 'SQLController@exerciseComplete')->name('student sql exercise complete');
+      });
+
+      Route::group(['prefix' => 'ujian'], function () {
+          Route::get('', 'SQLController@exam')->name('student sql exam');
+          Route::get('/read', 'SQLController@examRead')->name('student sql exam read');
+          Route::get('/detail/{id}', 'SQLController@examRead')->name('student sql exam detail');
+          Route::post('/create', 'SQLController@examStore')->name('student sql exam create');
+          Route::post('/update/{id}', 'SQLController@examUpdate')->name('student sql exam update');
+          Route::get('/delete/{id}', 'SQLController@examDelete')->name('student sql exam delete');
+
+          Route::get('/start', 'SQLController@examStart')->name('student sql exam start');
+          Route::get('/kerjakan/detail/{id}', 'SQLController@examDoDetail')->name('student sql exam do detail');
+          Route::get('/kerjakan/{id}', 'SQLController@examDo')->name('student sql exam do');
+          Route::post('/kerjakan/{id}', 'SQLController@examAnswer')->name('student sql exam answer');
+          Route::get('/complete', 'SQLController@examComplete')->name('student sql exam complete');
+      });
+  });
+  /* ----------------------------------- SQL ---------------------------------- */
 
 
 });
