@@ -26,7 +26,7 @@ class SQLController extends Controller
 {
     public function learning()
     {
-        return view(Auth::user()->roleid . '.sql.learning');
+        return view(Auth::user()->roleid . '.sqlcourse.learning');
     }
     public function learningRead($id = null)
     {
@@ -138,7 +138,7 @@ class SQLController extends Controller
         $data['next'] = SqlLearning::where('id', '>', $id)->min('id');
 
         // return $data;
-        return view('student.sql.learning_do', ['data' => $data]);
+        return view('student.sqlcourse.learning_do', ['data' => $data]);
     }
     public function learningDoReset()
     {
@@ -258,7 +258,7 @@ class SQLController extends Controller
 
     public function practice()
     {
-        return view(Auth::user()->roleid . '.sql.practice');
+        return view(Auth::user()->roleid . '.sqlcourse.practice');
     }
     public function practiceRead($id = null)
     {
@@ -397,7 +397,7 @@ class SQLController extends Controller
             $data['next'] = SqlPracticeQuestion::where('sql_practice_id', $id)->where('id', '>', $question)->min('id');
 
             // return $data;
-            return view('student.sql.practice_do', ['data' => $data]);
+            return view('student.sqlcourse.practice_do', ['data' => $data]);
         } else {
             throw new Exception("Error Processing Request", 1);
         }
@@ -504,7 +504,7 @@ class SQLController extends Controller
 
     public function exercise()
     {
-        return view(Auth::user()->roleid . '.sql.exercise');
+        return view(Auth::user()->roleid . '.sqlcourse.exercise');
     }
     public function exerciseRead($id = null)
     {
@@ -606,7 +606,7 @@ class SQLController extends Controller
 
             $data['jawaban'] = $jawaban;
 
-            return view('student.sql.exercise_do', ['data' => $data]);
+            return view('student.sqlcourse.exercise_do', ['data' => $data]);
         }
 
         return redirect()->route('student sql exercise');
@@ -776,7 +776,7 @@ class SQLController extends Controller
 
     public function exam()
     {
-        return view(Auth::user()->roleid . '.sql.exam');
+        return view(Auth::user()->roleid . '.sqlcourse.exam');
     }
     public function examRead($id = null)
     {
@@ -878,7 +878,7 @@ class SQLController extends Controller
 
             $data['jawaban'] = $jawaban;
 
-            return view('student.sql.exam_do', ['data' => $data]);
+            return view('student.sqlcourse.exam_do', ['data' => $data]);
         }
 
         return redirect()->route('student sql exam');

@@ -7,7 +7,7 @@
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group. Now create so mething great!
 |
 */
 // Python
@@ -185,29 +185,6 @@ Route::group(['middleware' => ['auth', 'student']], function () {
   Route::resource('/student/flutterexercise', 'FlutterExerciseStdController');
   Route::resource('/student/flutterexercisesubmission', 'FlutterExerciseSubmissionController');
   Route::resource('/student/flutterexercisevalid', 'FlutterExerciseStdValidController');
-  //NodeJs//
-  Route::patch('/student/nodejscourse/results/valsub', ['as' => 'results.valsub', 'uses' => 'NodejsTaskResultController@valsub']);
-  Route::get('/student/nodejscourse/results/create/{topic}', 'NodejsTaskResultController@create');
-  Route::get('/student/nodejscourse', 'StudentController@Nodejscourse');
-  Route::get('/student/nodejscourse/topic', 'StudentController@Nodejscoursetopic');
-  Route::resource('/student/nodejscourse/tasks', 'NodejsController');
-  Route::resource('/student/nodejscourse/results', 'NodejsResultController');
-  Route::resource('/student/nodejscourse/lfiles', 'NodejsFileResultController');
-  Route::get('/student/lfiles/nodejscourse/create/{topic}', 'NodejsFileResultController@create');
-  Route::get('/student/lfiles/nodejscourse/valid/{topic}', 'NodejsFileResultController@submit');
-  Route::get('/student/lfiles/nodejscourse/delete/{id}/{topic}', 'NodejsFileResultController@delete');
-  //Unity//
-  Route::patch('/student/unitycourse/results/valsub', ['as' => 'results.valsub', 'uses' => 'UnityTaskResultController@valsub']);
-  Route::get('/student/unitycourse/results/create/{topic}', 'UnityTaskResultController@create');
-  Route::get('/student/unitycourse', 'StudentController@unitycourse');
-  Route::get('/student/unitycourse/topic', 'StudentController@unitycoursetopic');
-  Route::resource('/student/unitycourse/tasks', 'UnityController');
-  Route::resource('/student/unitycourse/results', 'UnityResultController');
-  Route::resource('/student/unitycourse/lfiles', 'UnityFileResultController');
-  Route::get('/student/lfiles/unitycourse/create/{topic}', 'UnityFileResultController@create');
-  Route::get('/student/lfiles/unitycourse/valid/{topic}', 'UnityFileResultController@submit');
-  Route::get('/student/lfiles/unitycourse/delete/{id}/{topic}', 'UnityFileResultController@delete');
-
 
   /** Python */
   //Tampilan topik
@@ -230,22 +207,10 @@ Route::group(['middleware' => ['auth', 'student']], function () {
 
   Route::get("/student/pythoncourse/python-history/{id_topik}/{id_percobaan}", [ExercisePythonController::class, 'submit_history']);
 
-  Route::get('/student/androidcourse/asynctask', 'StudentController@asynctask');
-  Route::get('/student/androidcourse/firebase', 'StudentController@firebase');
 
   Route::get('/student', 'StudentController@index');
   Route::resource('/student/tasks', 'TaskStdController');
   Route::resource('/student/results', 'TaskResultController');
-
-  Route::patch('/student/androidcourse/results/valsub', ['as' => 'results.valsub', 'uses' => 'TaskResultController@valsub']);
-  Route::get('/student/androidcourse/results/create/{topic}', 'TaskResultController@create');
-  Route::resource('/student/androidcourse/lfiles', 'FileResultController');
-  Route::get('/student/lfiles/androidcourse/create/{topic}', 'FileResultController@create');
-  Route::get('/student/lfiles/androidcourse/valid/{topic}', 'FileResultController@submit');
-  Route::get('/student/lfiles/androidcourse/delete/{id}/{topic}', 'FileResultController@delete');
-  Route::resource('/student/androidcourse/rankview', 'StudentResultRankController');
-  Route::resource('/student/androidcourse/valid', 'StudentValidController');
-  Route::resource('/student/androidcourse/rankview', 'StudentResultRankController');
   Route::patch('/student/results/valsub', ['as' => 'results.valsub', 'uses' => 'TaskResultController@valsub']);
   Route::get('student/results/create/{topic}', 'TaskResultController@create');
   Route::resource('/student/lfiles', 'FileResultController');
@@ -269,9 +234,8 @@ Route::group(['middleware' => ['auth', 'student']], function () {
   Route::resource('/student/exercisevalid', 'ExerciseStdValidController');
   
   /* ----------------------------------- SQL ---------------------------------- */
-  Route::group(['prefix' => 'student/sqlcourse'], function () {
     Route::group(['prefix' => 'pembelajaran'], function () {
-      Route::get('/student/sql', 'StudentController@sqlcourse');
+      Route::get('/student/sqlcourse', 'StudentController@sqlcourse');
       Route::get('', 'SQLController@learning')->name('student sqlcourse learning');
       Route::get('/read', 'SQLController@learningRead')->name('student sqlcourse learning read');
       Route::get('/detail/{id}', 'SQLController@learningRead')->name('student sqlcourse learning detail');
@@ -297,7 +261,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
     });
 
     Route::group(['prefix' => 'latihan'], function () {
-      Route::get('', 'SQLController@exercise')->name('student sql exercise');
+      Route::get('', 'SQLController@exercise')->name('student sqlcourse exercise');
       Route::get('/read', 'SQLController@exerciseRead')->name('student sqlcourse exercise read');
       Route::get('/detail/{id}', 'SQLController@exerciseRead')->name('student sqlcourse exercise detail');
       Route::post('/create', 'SQLController@exerciseStore')->name('student sqlcourse exercise create');
@@ -325,7 +289,6 @@ Route::group(['middleware' => ['auth', 'student']], function () {
       Route::post('/kerjakan/{id}', 'SQLController@examAnswer')->name('student sqlcourse exam answer');
       Route::get('/complete', 'SQLController@examComplete')->name('student sqlcourse exam complete');
     });
-  });
   /* ----------------------------------- SQL ---------------------------------- */
 });
 

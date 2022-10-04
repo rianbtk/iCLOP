@@ -28,11 +28,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar -->
-        @include('student/sql/header')
+        @include('student/sqlcourse/header')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('student/sql/sidebar')
+        @include('student/sqlcourse/sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        @include('student/sql/footer')
+        @include('student/sqlcourse/footer')
 
     </div>
     <!-- ./wrapper -->
