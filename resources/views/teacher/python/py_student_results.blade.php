@@ -37,7 +37,7 @@
                                 <tr class="text-center">
                                     <th>Topik</th>
                                     <th>Percobaan</th>
-                                    <th>Terkumpul</th>
+                                    <th>Mengerjakan</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -64,34 +64,34 @@
                                     <td>
                                         @php
 
-                                        if ( $materi['total'] > 0 ) {
+                                        if ( count($materi['submitted']) > 0 ) {
 
-                                        echo $materi['total'].' mhs';
+                                            echo count($materi['submitted']).' mhs';
                                         } else {
 
-                                        echo '-';
+                                            echo '-';
                                         }
 
                                         @endphp
                                     </td>
-                                    <td>
+                                    <td style="width: 10%; text-align: center;">
                                         @php 
 
                                             $label = "";
-                                            if ( count( $materi['validation'] ) == $mhs ) {
+                                            if ( count( $materi['submitted'] ) == $mhs ) {
 
-                                                $label = '<label class="badge badge-info">Materi Selesai</label>';
+                                                $label = '<label class="badge badge-info">'. count($materi['submitted']).'/'.$mhs.' mhs</label>';
                                             
-                                            } else if ( count( $materi['validation'] ) == 0 ) {
+                                            } else if ( count( $materi['submitted'] ) == 0 ) {
 
                                                 $label = '<label class="badge badge-secondary">Kosong</label>';
-                                            } else if ( count( $materi['validation'] ) != $mhs ) {
+                                            } else if ( count( $materi['submitted'] ) != $mhs ) {
 
-                                                $label = '<label class="badge badge-warning">Sebagian</label>';
+                                                $label = '<label class="badge badge-warning">'. count($materi['submitted']).'/'.$mhs.' mhs</label>';
                                             }
 
 
-                                            // echo count( $materi['validation'] );
+                                            
                                             echo $label;
 
                                         @endphp 

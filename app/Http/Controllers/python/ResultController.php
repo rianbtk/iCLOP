@@ -52,7 +52,7 @@ class ResultController extends Controller
         }        
 
         // view
-        return view('student.pythoncourse.python_result.result_student', compact('dt_hasil'));
+        return view('student.python_result.result_student', compact('dt_hasil'));
     }
 
 
@@ -89,19 +89,32 @@ class ResultController extends Controller
                 ];
 
                 
-                $dt_validation = DB::table('python_students_validation')->select('python_students_validation.*', 'users.id', 'users.name')
-                    ->join('users', 'users.id', '=', 'python_students_validation.userid')
-                    ->where( $where );
+                // $dt_validation = DB::table('python_students_validation')->select('python_students_validation.*', 'users.id', 'users.name')
+                //     ->join('users', 'users.id', '=', 'python_students_validation.userid')
+                //     ->where( $where );
 
 
-                $totalEnroll = $dt_validation->count();
-                $dataSubmit  = $dt_validation->get();
+                // $totalEnroll = $dt_validation->count();
+                // $dataSubmit  = $dt_validation->get();
 
+                // array_push( $allPercobaan, array(
+
+                //     'percobaan' => $percobaan,
+                //     'validation'    => $dataSubmit,
+                //     'total'     => $totalEnroll,
+                // ) );
+
+                $dt_submit = DB::table("python_students_submit")->select("python_students_submit.*", 'users.id', 'users.name')
+                        ->join('users', 'users.id', '=', 'python_students_submit.userid')
+                        ->where( $where )->groupBy('python_students_submit.userid');
+
+                $totalEnroll = $dt_submit->count();
+                $dataSubmit  = $dt_submit->get();
 
                 array_push( $allPercobaan, array(
 
-                    'percobaan' => $percobaan,
-                    'validation'    => $dataSubmit,
+                    'percobaan'     => $percobaan,
+                    'submitted'    => $dataSubmit,
                     'total'     => $totalEnroll,
                 ) );
                 // echo $percobaan->nama_percobaan.' : '.$totalEnroll.'<br>';
@@ -143,34 +156,65 @@ class ResultController extends Controller
         $allPercobaan = array();
 
         $where = [
-            'python_students_validation.id_percobaan'  => $id_percobaan,
+            'id_percobaan'  => $id_percobaan,
             'uplink'            => Auth::id() // id_dosen
         ];
 
         
-        $dt_validation = DB::table('python_students_validation')->select('python_students_validation.*', 'users.id', 'users.name', 'checkresult')
-            ->join('python_students_submit', 'python_students_submit.id_submit', '=', 'python_students_validation.id_submit')
-            ->join('users', 'users.id', '=', 'python_students_validation.userid')
-            ->where( $where );
+        // $dt_validation = DB::table('python_students_validation')->select('python_students_validation.*', 'users.id', 'users.name', 'checkresult')
+        //     ->join('python_students_submit', 'python_students_submit.id_submit', '=', 'python_students_validation.id_submit')
+        //     ->join('users', 'users.id', '=', 'python_students_validation.userid')
+        //     ->where( $where );
 
 
-        $totalEnroll = $dt_validation->count();
-        $dataSubmit  = $dt_validation->get();
+        // $totalEnroll = $dt_validation->count();
+        // $dataSubmit  = $dt_validation->get();
 
 
-        $allPercobaan = array(
+        // $allPercobaan = array(
 
-            'percobaan'     => $dt_percobaan,
-            'validation'    => $dataSubmit,
-            'total'         => $totalEnroll,
-        );
+        //     'percobaan'     => $dt_percobaan,
+        //     'validation'    => $dataSubmit,
+        //     'total'         => $totalEnroll,
+        // );
+
+        
+        $allSubmit = array();
+        $dt_submit = DB::table("python_students_submit")->select("python_students_submit.*", 'users.id', 'users.name')
+                        ->join('users', 'users.id', '=', 'python_students_submit.userid')
+                        ->where( $where )->groupBy('python_students_submit.userid');
+
+
+        foreach ( $dt_submit->get() as $row ) {
+
+            // detail submit 
+            $where = array('python_students_submit.userid' => $row->id, 'python_students_submit.id_percobaan' => $id_percobaan);
+            
+            $detail = DB::table("python_students_submit")->select("python_students_submit.*", "python_students_validation.*")
+                ->join('python_students_validation', 'python_students_submit.id_submit', '=', 'python_students_validation.id_submit', 'left outer')
+                ->where( $where )->get();
+
+            $wherePassed = array_merge( $where, array('checkstat' => "PASSED") );
+            $cekKondisi  = DB::table("python_students_submit")->select("python_students_submit.*")->where( $wherePassed )->count();
+            $statusPassed = false;
+            
+            if ( $cekKondisi > 0 ) $statusPassed = true;
+
+            array_push( $allSubmit, array(
+
+                'infoMhs'    => $row,
+                'log'        => $detail,
+                'status'     => $statusPassed
+            ) );
+            
+        }
 
 
         // hitung mahasiswa berdasarkan dospem 
         $mhs = DB::table('users')->where('uplink', Auth::id())->count();
         $dosen = DB::table('users')->where('id', Auth::id())->first();
 
-        return view('teacher.python.py_student_result_detail', compact( 'allPercobaan', 'mhs', 'dosen', 'topik', 'dt_percobaan' ));        
+        return view('teacher.python.py_student_result_detail', compact( 'allSubmit', 'mhs', 'dosen', 'topik', 'dt_percobaan' ));        
     }
 
 }

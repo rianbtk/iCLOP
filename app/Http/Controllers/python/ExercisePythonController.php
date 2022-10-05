@@ -164,7 +164,7 @@ class ExercisePythonController extends Controller
 
             $unittest = "C:\\xampp\\htdocs\\iCLOP\\public\\python-resources\\unittest\\". $fileUnittest;
 
-            $output = shell_exec("C:\Users\Rania\AppData\Local\Programs\Python\Python310\python.exe ".$unittest." ".$packageDirectory." ".$fileName." --verbose 2>&1");
+            $output = shell_exec("C:\Users\Rania\AppData\Local\Programs\Python\Python310\python.exe".$unittest." ".$packageDirectory." ".$fileName." --verbose 2>&1");
 
             $validation_detail = "";
             $status = "";

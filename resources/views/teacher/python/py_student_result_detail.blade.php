@@ -44,17 +44,27 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td rowspan="{{ count( $allPercobaan['validation'] ) + 1 }}">
+                                    <td rowspan="{{ count( $allSubmit ) + 1 }}">
                                         <small>Nama Percobaan</small>
                                         <h4>{{ $dt_percobaan->nama_percobaan }}</h4>
                                     </td>
                                 </tr>
 
-                                @foreach ( $allPercobaan['validation'] AS $nomor => $isi )
+                                @foreach ( $allSubmit AS $nomor => $isi )
                                 <tr>
-                                    <td>{{ $isi->name }}</td>
-                                    <td>{{ $isi->status }}</td>
-                                    <td>{{ date('d M Y H.i A', strtotime($isi->create_at)) }}</td>
+                                    <td>{{ $isi['infoMhs']->name }}</td>
+                                    <td>
+                                        @php 
+                                        if ( $isi['status'] ) {
+                                            
+                                            echo "PASSED";
+                                        } else {
+
+                                            echo "FAILED";
+                                        }
+                                        @endphp
+                                    </td>
+                                    <td>{{ date('d M Y H.i A', strtotime($isi['infoMhs']->created_at)) }}</td>
                                     <td>
 
                                         <a href="javascript:;" data-toggle="modal" data-target="#modal-{{ $nomor }}" class="btn btn-sm btn-primary">Submitted</a>
@@ -64,28 +74,35 @@
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-
+                                        
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     
                                                     <b>Materi {{ $topik->nama }}</b>
                                                     <h5 style="margin: 0px"><code>{{ $dt_percobaan->nama_percobaan }}</code></h5>
-                                                    <small>Pengerjaan pada {{ date('d F Y H.i A', strtotime($isi->create_at)) }}</small>
+                                                    
+                                                    @foreach ( $isi['log'] AS $detail )
+                                                    <small>Pengerjaan pada {{ date('d F Y H.i A', strtotime($detail->created_at)) }}</small>
                                                     <div class="card card-body" style="font-family: 'Courier New', Courier, monospace">
-                                                        {{ $isi->report }}
+                                                        {{ $detail->checkstat }}
 
+                                        
                                                         <hr>
                                                         <b>Hasil Unit Test : </b><br>
-                                                        <?php echo $isi->checkresult ?>
+                                                        <?php echo $detail->checkresult ?>
                                                     </div>
-                                                    <a href="{{ asset('python-resources/unittest/jawaban/'. $isi->file_submitted) }}.py" download>Unduh Source Code</a><br>
-                                                    <small>Klik untuk mengunduh file jawaban</small>
+                                                    {{-- <a href="{{ asset('python-resources/unittest/jawaban/'. $detail->file_submitted) }}.py" download>Unduh Source Code</a><br>
+                                                    <small>Klik untuk mengunduh file jawaban</small> --}}
+                                                    
 
+                                                    @endforeach
+                                        
                                                 </div>
                                             </div>
                                             </div>
                                         </div>
+
                                     </td>
                                 </tr>
                                 @endforeach
