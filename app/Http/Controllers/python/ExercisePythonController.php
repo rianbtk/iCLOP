@@ -156,6 +156,8 @@ class ExercisePythonController extends Controller
 
         // 0 -> tidak ada error ([1] = status)
         // 0 -> tidak error
+
+        
         if ( $cek_error[1] == 0 ) {
 
             //ambil direktory
@@ -164,10 +166,13 @@ class ExercisePythonController extends Controller
 
             $unittest = "C:\\xampp\\htdocs\\iCLOP\\public\\python-resources\\unittest\\". $fileUnittest;
 
-            $output = shell_exec("C:\Users\Rania\AppData\Local\Programs\Python\Python310\python.exe".$unittest." ".$packageDirectory." ".$fileName." --verbose 2>&1");
+            
+            $output = shell_exec("C:\Users\Rania\AppData\Local\Programs\Python\Python310\python.exe ".$unittest." ".$packageDirectory." ".$fileName." --verbose 2>&1");
 
             $validation_detail = "";
             $status = "";
+
+
             
             // split output
             $dataTest = explode("Error", $output);
@@ -312,14 +317,13 @@ class ExercisePythonController extends Controller
                 'userid'        => Auth::id()
             );
             $jmlPercobaanSubmit = DB::table("python_students_submit")->where( $where )->count();
-            
+
             echo json_encode(['status' => $statusSintax, 'data' => $statusPassed, 'jml' => $jmlPercobaanSubmit]);
 
         } else {
 
             echo json_encode(['status' => $statusSintax, 'statusPercobaan' => false, 'data' => $cek_error[0]]);
         }
-        
     }
 
 
