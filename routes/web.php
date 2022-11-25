@@ -232,6 +232,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
 
   Route::get('/student/androidcourse/asynctask', 'StudentController@asynctask');
   Route::get('/student/androidcourse/firebase', 'StudentController@firebase');
+  Route::get('/student/android', 'StudentController@android');
 
   Route::get('/student', 'StudentController@index');
   Route::resource('/student/tasks', 'TaskStdController');

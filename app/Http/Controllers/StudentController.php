@@ -9,6 +9,9 @@ class StudentController extends Controller
   public function index() {
     return view('student/main');
   }
+  public function android() {
+    return view('student/main');
+  }
   public function androidcourse() {
     return view('student/androidcourse/main');
   }

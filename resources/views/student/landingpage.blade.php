@@ -143,6 +143,13 @@
               <p class="description">MySQL is a DBMS (Database Management System) using SQL (Structured Query Language) commands.So, MySQL is a free database server licensed under the GNU General Public License (GPL) so you can use it for personal or commercial purposes without having to pay for an existing license.</p>
             </div>
           </div>
+          <div onclick="window.open('{{URL::to('/student/android/')}}','android-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class='bx bxl-medium-old'></i></div>
+              <h4 class="title"><a href="">APLAS</a></h4>
+              <p class="description">Aplas lama</p>
+            </div>
+          </div>
 
       </div>
     </section><!-- End Featured Services Section -->
