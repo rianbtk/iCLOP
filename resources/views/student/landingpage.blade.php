@@ -111,21 +111,6 @@
             </div>
           </div>
 
-          <div onclick="window.open('{{URL::to('/student/unitycourse/')}}','unitycourse-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class='bx bxs-game'></i></div>
-              <h4 class="title"><a href="">Unity</a></h4>
-              <p class="description">Unity 3D is a software engine for developing games with casual, AR (Augmented Reality) and VR (Virtual Reality) genres. The game results from Unity 3D are cross-platform. Which means you can publish your game to multiple platforms.</p>
-            </div>
-          </div>
-
-          <!-- <div onclick="window.open('{{URL::to('/student/flutter')}}','fluttercourse-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class='bx bxl-flutter'></i></div>
-              <h4 class="title"><a href="">Flutter</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div> -->
           <div onclick="window.open('{{URL::to('/student/fluttercourse/')}}','fluttercourse-aplas');" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class='bx bxl-flutter'></i></div>

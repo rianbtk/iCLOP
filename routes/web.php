@@ -196,17 +196,6 @@ Route::group(['middleware' => ['auth', 'student']], function () {
   Route::get('/student/lfiles/nodejscourse/create/{topic}', 'NodejsFileResultController@create');
   Route::get('/student/lfiles/nodejscourse/valid/{topic}', 'NodejsFileResultController@submit');
   Route::get('/student/lfiles/nodejscourse/delete/{id}/{topic}', 'NodejsFileResultController@delete');
-  //Unity//
-  Route::patch('/student/unitycourse/results/valsub', ['as' => 'results.valsub', 'uses' => 'UnityTaskResultController@valsub']);
-  Route::get('/student/unitycourse/results/create/{topic}', 'UnityTaskResultController@create');
-  Route::get('/student/unitycourse', 'StudentController@unitycourse');
-  Route::get('/student/unitycourse/topic', 'StudentController@unitycoursetopic');
-  Route::resource('/student/unitycourse/tasks', 'UnityController');
-  Route::resource('/student/unitycourse/results', 'UnityResultController');
-  Route::resource('/student/unitycourse/lfiles', 'UnityFileResultController');
-  Route::get('/student/lfiles/unitycourse/create/{topic}', 'UnityFileResultController@create');
-  Route::get('/student/lfiles/unitycourse/valid/{topic}', 'UnityFileResultController@submit');
-  Route::get('/student/lfiles/unitycourse/delete/{id}/{topic}', 'UnityFileResultController@delete');
 
 
   /** Python */
